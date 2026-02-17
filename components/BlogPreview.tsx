@@ -1,0 +1,150 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+const posts = [
+  {
+    title: "CLOUDFLARE TUNNEL: A SECURE WAY TO CONNECT YOUR RESOURCES",
+    date: "JAN 2026",
+    readTime: 10,
+    tags: ["CLOUDFLARE", "NETWORKING"],
+    slug: "cloudflared-tunnel",
+  },
+  {
+    title: "WHY I THINK NIXOS IS OG FOR PRODUCTION AND DEVELOPMENT",
+    date: "DEC 2025",
+    readTime: 6,
+    tags: ["NIX", "NIXOS"],
+    slug: "nixos-distro",
+  },
+];
+
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
+const headerVariant = (delay: number) => ({
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay, ease } },
+});
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.18 } },
+};
+
+export default function BlogPreview() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section id="writing" className="py-20">
+      <div className="px-6 md:px-12 lg:px-[300px]" ref={ref}>
+        {/* Header */}
+        <motion.span
+          variants={headerVariant(0)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="block font-mono text-[11px] text-accent tracking-label font-medium uppercase mb-3"
+        >
+          WRITING
+        </motion.span>
+        <motion.h2
+          variants={headerVariant(0.08)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="font-mono text-[40px] md:text-[48px] font-bold text-primary leading-[1.0] tracking-tight"
+        >
+          Blog
+        </motion.h2>
+        <motion.p
+          variants={headerVariant(0.14)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="font-sans text-[15px] text-secondary mt-4 max-w-md"
+        >
+          Thoughts on systems, web engineering, and the tools I use.
+        </motion.p>
+
+        <motion.div
+          variants={headerVariant(0.18)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="border-t border-border mt-10 mb-8"
+        />
+
+        {/* Cards */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="flex flex-col gap-3"
+        >
+          {posts.map((post) => (
+            <motion.div key={post.slug} variants={cardVariant}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group relative flex items-center justify-between gap-4 px-6 py-5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
+              >
+                <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
+
+                {/* Left: date + title + tags */}
+                <div className="flex items-center gap-4 min-w-0">
+                  <span className="font-mono text-[11px] text-dim tracking-[0.05em] shrink-0 w-16">
+                    {post.date}
+                  </span>
+                  <h3 className="font-mono text-[16px] md:text-[18px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
+                    {post.title}
+                  </h3>
+                  <div className="hidden md:flex items-center gap-1.5 shrink-0">
+                    {post.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right: read time + arrow */}
+                <div className="flex items-center gap-4 shrink-0">
+                  <span className="font-mono text-[10px] text-accent tracking-tag">
+                    {post.readTime} MIN
+                  </span>
+                  <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
+                    &rarr;
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* View all */}
+        <motion.div
+          variants={headerVariant(0.45)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mt-8"
+        >
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] text-accent tracking-label uppercase hover:underline underline-offset-4 transition-colors duration-150"
+          >
+            VIEW ALL POSTS
+            <span className="inline-block group-hover:translate-x-1 transition-transform duration-150 ease-out">
+              &rarr;
+            </span>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
