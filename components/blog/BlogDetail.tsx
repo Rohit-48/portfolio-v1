@@ -43,7 +43,7 @@ function convertMarkdown(md: string): string {
 
 export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
   return (
-    <div>
+    <div className="max-w-[720px] mx-auto">
       {/* Back link */}
       <Link
         href="/blog"
@@ -84,7 +84,7 @@ export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
 
       {/* Article prose — narrower column for reading comfort */}
       <article
-        className="prose-custom max-w-[640px]"
+        className="prose-custom"
         dangerouslySetInnerHTML={{ __html: convertMarkdown(post.content) }}
       />
 

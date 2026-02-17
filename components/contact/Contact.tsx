@@ -95,18 +95,18 @@ function SocialCard({ s, variants }: { s: SocialLink; variants: typeof socialCar
         }}
       />
       <s.icon
-        size={14}
+        size={16}
         className="mt-0.5 shrink-0 transition-colors duration-150 ease-out"
         style={{ color: hovered ? s.brand : "var(--dim)" }}
       />
       <span className="flex flex-col min-w-0">
         <span
-          className="font-mono text-[11px] tracking-nav uppercase transition-colors duration-150 ease-out truncate"
+          className="font-mono text-[13px] tracking-nav uppercase transition-colors duration-150 ease-out truncate"
           style={{ color: hovered ? s.brand : "var(--primary)" }}
         >
           {s.label}
         </span>
-        <span className="font-mono text-[9px] text-dim tracking-tag mt-1.5">
+        <span className="font-mono text-[11px] text-dim tracking-tag mt-1.5">
           {s.tag}
         </span>
       </span>
@@ -132,7 +132,7 @@ export default function Contact() {
         >
           <div className="inline-flex items-center gap-2.5 h-8 px-4 border border-accent/60">
             <span className="contact-pulse-dot" />
-            <span className="font-mono text-[10px] text-accent tracking-label font-medium">
+            <span className="font-mono text-[11px] text-accent tracking-label font-medium">
               AVAILABLE FOR WORK
             </span>
           </div>
@@ -143,7 +143,7 @@ export default function Contact() {
           variants={slideIn(0.08)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="font-mono text-[52px] md:text-[72px] font-bold text-primary leading-[0.95] tracking-tight"
+          className="font-mono text-[56px] md:text-[80px] font-bold text-primary leading-[0.95] tracking-tight"
         >
           LET&apos;S BUILD
         </motion.h2>
@@ -151,7 +151,7 @@ export default function Contact() {
           variants={slideIn(0.16)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="font-mono text-[52px] md:text-[72px] font-bold text-accent leading-[0.95] tracking-tight mb-10"
+          className="font-mono text-[56px] md:text-[80px] font-bold text-accent leading-[0.95] tracking-tight mb-10"
         >
           SOMETHING.
         </motion.h2>
@@ -161,7 +161,7 @@ export default function Contact() {
           variants={fadeIn(0.26)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="font-sans text-[15px] text-secondary leading-relaxed max-w-lg mb-14"
+          className="font-sans text-[17px] text-secondary leading-relaxed max-w-lg mb-14"
         >
           Open to full-time roles, freelance projects, and interesting problems.
           Let&apos;s talk about what we can create together.
@@ -177,13 +177,13 @@ export default function Contact() {
         >
           <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
           <span className="flex items-center gap-3 mb-3">
-            <Mail size={14} className="text-dim" />
-            <span className="font-mono text-[10px] text-dim tracking-label uppercase">
+            <Mail size={16} className="text-dim" />
+            <span className="font-mono text-[12px] text-dim tracking-label uppercase">
               SAY HELLO
             </span>
           </span>
           <span className="flex items-center justify-between">
-            <span className="font-mono text-[18px] md:text-[22px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
+            <span className="font-mono text-[20px] md:text-[26px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
               rohitmandavkar3477@gmail.com
             </span>
             <span className="font-mono text-accent text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
@@ -203,11 +203,11 @@ export default function Contact() {
           <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
           <span className="flex items-center justify-between">
             <span className="flex items-center gap-4">
-              <Phone size={13} className="text-dim" />
-              <span className="font-mono text-[10px] text-dim tracking-label uppercase">
+              <Phone size={16} className="text-dim" />
+              <span className="font-mono text-[12px] text-dim tracking-label uppercase">
                 PHONE
               </span>
-              <span className="font-mono text-[14px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
+              <span className="font-mono text-[17px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
                 +91 7058315306
               </span>
             </span>
@@ -222,7 +222,7 @@ export default function Contact() {
           variants={fadeIn(0.46)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="block font-mono text-[10px] text-dim tracking-label uppercase mb-6"
+          className="block font-mono text-[12px] text-dim tracking-label uppercase mb-6"
         >
           FIND ME ON
         </motion.span>

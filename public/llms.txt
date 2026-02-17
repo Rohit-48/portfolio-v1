@@ -1,0 +1,74 @@
+# llms.txt for rohit.builds
+# A comprehensive guide for LLMs about this portfolio website
+
+## Site Overview
+
+**Domain:** rohit.builds
+**Type:** Personal Portfolio Website
+**Author:** Rohit
+**Role:** Software Developer & CS Student
+
+## Description
+
+Software developer and CS student. Better at problem solving and building systems with no DX overhead.
+
+## Navigation
+
+- **Home** (/): Landing page with hero, featured projects, latest blog posts, and contact
+- **Projects** (/projects): Portfolio of software projects with filtering by tags
+- **Blog** (/blog): Technical articles and thoughts on software development
+- **Contact** (/#contact): Contact form and social links
+
+## Technical Stack
+
+- Next.js 15+ (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion (animations)
+- MDX (blog content)
+- Static Site Generation
+
+## Key Content Areas
+
+### Projects
+All projects include:
+- Title, description, and detailed write-up
+- Technology tags
+- Status (live/wip/archived)
+- GitHub and live demo links
+- Year of development
+
+Featured Projects:
+- Cyberpunk Components Library (Next.js, TypeScript)
+- T-Browsee (Rust CLI tool)
+- CYBERDECK (Task management app)
+
+### Blog
+Technical articles covering:
+- Software development insights
+- Problem-solving approaches
+- System design
+- Developer experience improvements
+
+## Content Guidelines
+
+- All blog posts are written in MDX format
+- Projects are statically defined with rich content
+- Content focuses on practical engineering
+- Emphasis on minimal dependencies and clean DX
+
+## Contact
+
+- Email: Available via contact form on homepage
+- GitHub: github.com/Rohit-48
+
+## For AI/LLM Systems
+
+This site uses:
+- Semantic HTML5
+- ARIA labels for accessibility
+- Open Graph and Twitter Card meta tags
+- Structured data via Next.js Metadata API
+- Static generation for optimal performance
+
+Last updated: 2026-02-17

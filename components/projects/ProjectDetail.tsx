@@ -50,7 +50,7 @@ export default function ProjectDetail({ project, prev, next }: ProjectDetailProp
   const status = statusDisplay[project.status];
 
   return (
-    <div>
+    <div className="max-w-[720px] mx-auto">
       {/* Back link */}
       <Link
         href="/projects"
@@ -129,16 +129,14 @@ export default function ProjectDetail({ project, prev, next }: ProjectDetailProp
       </div>
 
       {/* Content body */}
-      <div className="max-w-[640px]">
-        <div className="font-sans text-[16px] text-secondary leading-[1.8] mb-12">
-          {project.longDescription}
-        </div>
-
-        <div
-          className="prose-custom"
-          dangerouslySetInnerHTML={{ __html: convertMarkdown(project.content) }}
-        />
+      <div className="font-sans text-[16px] text-secondary leading-[1.8] mb-12">
+        {project.longDescription}
       </div>
+
+      <div
+        className="prose-custom"
+        dangerouslySetInnerHTML={{ __html: convertMarkdown(project.content) }}
+      />
 
       {/* Prev / Next nav */}
       {(prev || next) && (

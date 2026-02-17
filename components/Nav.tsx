@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 const navLinks = [
   { label: "HOME", href: "/", scroll: false },

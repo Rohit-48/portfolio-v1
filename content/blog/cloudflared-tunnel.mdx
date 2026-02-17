@@ -1,0 +1,44 @@
+---
+slug: "cloudflared-tunnel"
+title: "CLOUDFLARE TUNNEL: A SECURE WAY TO CONNECT YOUR RESOURCES"
+excerpt: "A deep dive into how Cloudflare Tunnel works and how you can use it to secure your resources."
+date: "2026-01-30"
+readTime: 10
+tags:
+  - "CLOUDFLARE"
+  - "NETWORKING"
+  - "SELF-HOSTING"
+  - "NIXOS"
+published: true
+---
+
+## The Old Way
+
+If you have ever exposed a service from home, you know the classic approach: open a port, point DNS at your public IP, hope your firewall is tight.
+
+Cloudflare Tunnel flips that entire model.
+
+## How It Works
+
+Instead of allowing inbound connections, you run `cloudflared` inside your network making outbound-only connections to Cloudflare's edge.
+
+This gives you two big wins:
+
+- **No inbound ports** on your router
+- **Your origin stays hidden** behind Cloudflare's WAF/DDoS protection
+
+## Why This Beats Port Forwarding
+
+- **No inbound ports** — firewall stays closed
+- **Hidden origin IP** — your public IP is not revealed
+- **WAF and DDoS protection** — Cloudflare absorbs attacks
+- **CGNAT friendly** — works without a real public IP
+
+## Quickstart
+
+Install `cloudflared`, authenticate, create a tunnel, configure ingress rules mapping hostnames to local services, route DNS, and run.
+
+## NixOS Integration
+
+On NixOS, manage the connector as a systemd service — fully declarative, just like everything else in your config.
+

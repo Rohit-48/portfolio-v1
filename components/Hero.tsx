@@ -58,15 +58,15 @@ export default function Hero() {
 
             {/* Role tags */}
             <motion.div {...fade(0.38)} className="flex items-center gap-3 mb-10">
-              <span className="font-mono text-[11px] text-dim tracking-nav uppercase">
+              <span className="font-mono text-[14px] text-dim tracking-nav uppercase">
                 WEB ENGINEER
               </span>
               <span className="w-1 h-1 bg-accent" style={{ clipPath: "circle(50%)" }} />
-              <span className="font-mono text-[11px] text-dim tracking-nav uppercase">
+              <span className="font-mono text-[14px] text-dim tracking-nav uppercase">
                 CS STUDENT
               </span>
               <span className="w-1 h-1 bg-accent" style={{ clipPath: "circle(50%)" }} />
-              <span className="font-mono text-[11px] text-dim tracking-nav uppercase">
+              <span className="font-mono text-[14px] text-dim tracking-nav uppercase">
                 OPEN TO WORK
               </span>
             </motion.div>
