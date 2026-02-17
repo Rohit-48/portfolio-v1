@@ -42,7 +42,7 @@ export default function Nav() {
         )}
       >
         <div className="h-full px-6 md:px-12 lg:px-[300px] flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm text-primary tracking-nav font-medium">RM</Link>
+          <Link href="/" className="font-mono text-sm text-primary tracking-nav font-medium">Rohit.builds</Link>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) =>

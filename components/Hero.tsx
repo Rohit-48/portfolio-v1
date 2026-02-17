@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -27,6 +28,9 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center">
       <div className="px-6 md:px-12 lg:px-[300px] w-full pt-28 pb-32">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16">
+          {/* Left column */}
+          <div className="min-w-0 max-w-2xl">
 
         {/* Top line — year + role */}
         <motion.div {...fade(0.1)} className="flex items-center gap-4 mb-10">
@@ -48,8 +52,7 @@ export default function Hero() {
             {...slideLeft(0.26)}
             className="block font-mono text-[64px] md:text-[100px] lg:text-[120px] font-bold text-primary leading-[0.9] tracking-tight"
           >
-
-            <span className="text-accent">BUILDS</span>
+            BUILDS<span className="text-accent">.</span>
           </motion.span>
         </h1>
 
@@ -110,6 +113,22 @@ export default function Hero() {
             SCROLL
           </span>
         </motion.div>
+          </div>
+
+          {/* Right column — profile image */}
+          <motion.div {...fade(0.22)} className="hidden lg:block shrink-0">
+            <div className="w-56 h-72 border border-border overflow-hidden">
+              <Image
+                src="/avatar.png"
+                alt="Rohit portrait"
+                width={224}
+                height={288}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

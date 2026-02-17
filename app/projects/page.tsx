@@ -3,6 +3,7 @@ import { getAllProjects } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
 import ParticleBackground from "@/components/background/ParticleBackground";
+import PatternOverlay from "@/components/background/PatternOverlay";
 import CursorRing from "@/components/CursorRing";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 
@@ -18,6 +19,7 @@ export default function ProjectsPage() {
   return (
     <>
       <ParticleBackground />
+      <PatternOverlay />
       <CursorRing />
       <Navbar />
       <PageWrapper>

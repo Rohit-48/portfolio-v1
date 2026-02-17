@@ -4,6 +4,7 @@ import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
 import ParticleBackground from "@/components/background/ParticleBackground";
+import PatternOverlay from "@/components/background/PatternOverlay";
 import CursorRing from "@/components/CursorRing";
 import BlogDetail from "@/components/blog/BlogDetail";
 
@@ -47,6 +48,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <ParticleBackground />
+      <PatternOverlay />
       <CursorRing />
       <Navbar />
       <PageWrapper>

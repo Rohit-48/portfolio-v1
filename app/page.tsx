@@ -7,11 +7,13 @@ import Contact from "@/components/contact/Contact";
 import SpotifyPlayer from "@/components/spotify/SpotifyPlayer";
 import CursorRing from "@/components/CursorRing";
 import ParticleBackground from "@/components/background/ParticleBackground";
+import PatternOverlay from "@/components/background/PatternOverlay";
 
 export default function Home() {
   return (
     <>
       <ParticleBackground />
+      <PatternOverlay />
       <CursorRing />
       <Nav />
       <main id="main-content" className="relative z-10">
