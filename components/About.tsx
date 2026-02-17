@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import ProfileImage from "./about/ProfileImage";
 
 const techStack = ["REACT", "JAVASCRIPT", "TYPESCRIPT", "RUST", "NIX", "NEXT.JS", "CSS", "TAILWIND", "C", "NODE.JS", "EXPRESS", "HONO.JS", "PYTHON", "FRAMER", "FIGMA", "DJANGO", "C++", "BUN"];
 
@@ -17,8 +16,8 @@ export default function About() {
     <section id="about" className="py-16">
       <div className="px-6 md:px-12 lg:px-[300px]">
         <motion.div ref={ref} variants={containerV} initial="hidden" animate={inView ? "visible" : "hidden"}>
-          <div className="flex flex-col md:flex-row gap-10 items-start">
-            <div className="flex-1">
+          <div>
+            <div>
               <motion.span variants={itemV} className="block font-mono text-[11px] text-accent tracking-label font-medium uppercase mb-2">01</motion.span>
               <motion.h2 variants={itemV} className="font-mono text-[40px] md:text-[48px] font-medium text-primary leading-[1.1] tracking-tighter uppercase mb-10">ABOUT</motion.h2>
 
@@ -38,15 +37,6 @@ export default function About() {
                 ))}
               </motion.div>
             </div>
-
-            <ProfileImage
-              src="/avatar.png"
-              alt="Rohit, full-stack developer"
-              name="ROHIT"
-              title="FULL-STACK DEVELOPER"
-              location="BASED IN RATNAGIRI"
-              size="md"
-            />
           </div>
         </motion.div>
       </div>
