@@ -40,6 +40,18 @@ export const projects: Project[] = [
     content: `## Overview\n\nCYBERDECK is a task management app with a Cyberpunk visual identity.\n\n## Features\n\n- **Task Creation** — create, edit, delete tasks with priority levels\n- **Project Organization** — group tasks into projects with progress tracking\n- **Neon UI** — full cyberpunk design system\n- **Responsive** — works across desktop and mobile\n\n## Stack\n\nNext.js + TypeScript + Tailwind CSS + Shadcn UI. Deployed on Netlify.`,
   },
   {
+    slug: "Neurolink",
+    title: "Neurolink",
+    description: "NeroLink enables peer-to-peer file sharing across devices on the same local network. It provides both a web-based interface accessible via browsers and command-line tools for programmatic file transfers.",
+    longDescription: "NeroLink enables peer-to-peer file sharing across devices on the same local network. It provides both a web-based interface accessible via browsers and command-line tools for programmatic file transfers.",
+    tags: ["RUST", "ACTIX-WEB", "TOKIO", "CLI", "JAVASCRIPT", "TYPESCRIPT"],
+    status: "live",
+    year: "2026",
+    githubUrl: "https://github.com/Rohit-48/Neurolink",
+    featured: true,
+    content: `## Overview\n\nNeurolink is a file sharing platform built with Rust, Actix-web, and Tokio.\n\n## Features\n\n- **File Sharing** — share files with other devices on the same local network\n- **Web Interface** — access the platform via a web browser\n- **Command Line** — use the platform via a command line interface\n- **Neon UI** — full cyberpunk design system\n- **Responsive** — works across desktop and mobile\n\n## Stack\n\nRust + Actix-web + Tokio + JavaScript + TypeScript. Deployed on Netlify.`,
+  },
+  {
     slug: "task-rs",
     title: "TASK.RS",
     description: "A blazingly fast task manager built with Rust backend and React frontend.",
