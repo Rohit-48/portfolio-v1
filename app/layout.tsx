@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Rohit" }],
   creator: "Rohit",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/my-notion-face-transparent.png",
+    shortcut: "/my-notion-face-transparent.png",
+    apple: "/my-notion-face-transparent.png",
   },
   openGraph: {
     type: "website",
