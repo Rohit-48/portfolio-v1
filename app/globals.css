@@ -3,6 +3,13 @@
 /* Class-based dark mode for next-themes */
 @custom-variant dark (&:is(.dark *));
 
+/* View Transitions API — animated theme toggler */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 /* ━━━ Light mode (default) ━━━ */
 :root {
   --bg: #F5F5F0;
@@ -89,7 +96,6 @@ body {
   color: var(--primary);
   font-family: var(--font-sans);
   cursor: crosshair;
-  transition: background-color 200ms ease, color 200ms ease;
 }
 
 /* ━━━ Background pattern overlay (dots + lines) ━━━ */

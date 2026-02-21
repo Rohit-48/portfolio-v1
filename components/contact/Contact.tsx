@@ -2,45 +2,46 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { Mail, Phone } from "lucide-react";
 import {
-  Github,
-  Twitter,
-  Linkedin,
-  Gitlab,
-  MessageCircle,
-  Calendar,
-  Coffee,
-  Code,
-  BarChart3,
-  Palette,
-  Pin,
-  GitFork,
-  Mail,
-  Phone,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  SiGithub,
+  SiX,
+  SiLinkedin,
+  SiDiscord,
+  SiCaldotcom,
+  SiBuymeacoffee,
+  SiLeetcode,
+  SiKaggle,
+  SiCodeberg,
+  SiGitlab,
+  SiBehance,
+  SiPinterest,
+} from "react-icons/si";
+import type { IconType } from "react-icons";
 
 interface SocialLink {
   label: string;
   href: string;
   tag: string;
-  icon: LucideIcon;
+  icon: IconType;
   brand: string;
+  /** Override hover color for icon/label (e.g. white for X on dark backgrounds) */
+  hoverColor?: string;
 }
 
 const socials: SocialLink[] = [
-  { label: "GITHUB", href: "https://github.com/Rohit-48", tag: "Open source", icon: Github, brand: "#8B949E" },
-  { label: "X", href: "https://x.com/rohitcpp", tag: "Short thoughts", icon: Twitter, brand: "#1DA1F2" },
-  { label: "LINKEDIN", href: "https://linkedin.com/in/rohit48", tag: "Career", icon: Linkedin, brand: "#0A66C2" },
-  { label: "DISCORD", href: "https://discord.com/users/rohitvince0", tag: "Chat", icon: MessageCircle, brand: "#5865F2" },
-  { label: "BOOK A CALL", href: "https://cal.com/rohitvince0", tag: "Schedule", icon: Calendar, brand: "#FF6B4A" },
-  { label: "COFFEE", href: "https://buymeacoffee.com/rohit77", tag: "Support", icon: Coffee, brand: "#FFDD00" },
-  { label: "LEETCODE", href: "https://leetcode.com/u/rohit-48/", tag: "DSA", icon: Code, brand: "#FFA116" },
-  { label: "KAGGLE", href: "https://www.kaggle.com/rohitmandavkar48", tag: "ML", icon: BarChart3, brand: "#20BEFF" },
-  { label: "CODEBERG", href: "https://codeberg.org/giyucode", tag: "Open source", icon: GitFork, brand: "#2185D0" },
-  { label: "GITLAB", href: "https://gitlab.com/giyucode", tag: "Open source", icon: Gitlab, brand: "#FC6D26" },
-  { label: "BEHANCE", href: "https://www.behance.net/rohitmandavkar", tag: "Design", icon: Palette, brand: "#1769FF" },
-  { label: "PINTEREST", href: "https://pin.it/6H1ZDBaie", tag: "Inspiration", icon: Pin, brand: "#E60023" },
+  { label: "GITHUB", href: "https://github.com/Rohit-48", tag: "Open source", icon: SiGithub, brand: "#8B949E" },
+  { label: "X", href: "https://x.com/rohitcpp", tag: "Short thoughts", icon: SiX, brand: "#000000", hoverColor: "#FFFFFF" },
+  { label: "LINKEDIN", href: "https://linkedin.com/in/rohit48", tag: "Career", icon: SiLinkedin, brand: "#0A66C2" },
+  { label: "DISCORD", href: "https://discord.com/users/rohitvince0", tag: "Chat", icon: SiDiscord, brand: "#5865F2" },
+  { label: "BOOK A CALL", href: "https://cal.com/rohitvince0", tag: "Schedule", icon: SiCaldotcom, brand: "#FF6B4A" },
+  { label: "COFFEE", href: "https://buymeacoffee.com/rohit77", tag: "Support", icon: SiBuymeacoffee, brand: "#FFDD00" },
+  { label: "LEETCODE", href: "https://leetcode.com/u/rohit-48/", tag: "DSA", icon: SiLeetcode, brand: "#FFA116" },
+  { label: "KAGGLE", href: "https://www.kaggle.com/rohitmandavkar48", tag: "ML", icon: SiKaggle, brand: "#20BEFF" },
+  { label: "CODEBERG", href: "https://codeberg.org/giyucode", tag: "Open source", icon: SiCodeberg, brand: "#2185D0" },
+  { label: "GITLAB", href: "https://gitlab.com/giyucode", tag: "Open source", icon: SiGitlab, brand: "#FC6D26" },
+  { label: "BEHANCE", href: "https://www.behance.net/rohitmandavkar", tag: "Design", icon: SiBehance, brand: "#1769FF" },
+  { label: "PINTEREST", href: "https://pin.it/6H1ZDBaie", tag: "Inspiration", icon: SiPinterest, brand: "#E60023" },
 ];
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -83,26 +84,26 @@ function SocialCard({ s, variants }: { s: SocialLink; variants: typeof socialCar
       onMouseLeave={() => setHovered(false)}
       className="group relative flex items-start gap-3 p-4 border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:-translate-y-0.5"
       style={{
-        borderColor: hovered ? `${s.brand}66` : "var(--border)",
-        backgroundColor: hovered ? `${s.brand}0F` : "transparent",
+        borderColor: hovered ? `${s.hoverColor ?? s.brand}66` : "var(--border)",
+        backgroundColor: hovered ? `${s.hoverColor ?? s.brand}0F` : "transparent",
       }}
     >
       <span
         className="absolute bottom-0 left-0 h-px transition-[width] duration-300 ease-out"
         style={{
           width: hovered ? "100%" : "0%",
-          backgroundColor: s.brand,
+          backgroundColor: s.hoverColor ?? s.brand,
         }}
       />
       <s.icon
         size={16}
         className="mt-0.5 shrink-0 transition-colors duration-150 ease-out"
-        style={{ color: hovered ? s.brand : "var(--dim)" }}
+        style={{ color: hovered ? (s.hoverColor ?? s.brand) : "var(--dim)" }}
       />
       <span className="flex flex-col min-w-0">
         <span
           className="font-mono text-[13px] tracking-nav uppercase transition-colors duration-150 ease-out truncate"
-          style={{ color: hovered ? s.brand : "var(--primary)" }}
+          style={{ color: hovered ? (s.hoverColor ?? s.brand) : "var(--primary)" }}
         >
           {s.label}
         </span>

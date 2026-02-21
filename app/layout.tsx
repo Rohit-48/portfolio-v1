@@ -17,7 +17,7 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
-const BASE_URL = "https://rohit.builds";
+const BASE_URL = "https://rohitxyz.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -93,7 +93,7 @@ export default function RootLayout({
       className={`${dmMono.variable} ${instrumentSans.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>

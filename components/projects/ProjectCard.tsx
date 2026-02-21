@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { ProjectMeta } from "@/types/project";
 import { cn } from "@/lib/utils";
+import { useProjectPreview } from "./ProjectPreviewContext";
 
 interface ProjectCardProps {
   project: ProjectMeta;
@@ -37,12 +38,28 @@ const cardVariant = {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const num = String(index + 1).padStart(3, "0");
   const status = statusConfig[project.status];
+  const { setPreview } = useProjectPreview() ?? {};
+
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    setPreview?.(project, e.clientX, e.clientY);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setPreview?.(project, e.clientX, e.clientY);
+  };
+
+  const handleMouseLeave = () => {
+    setPreview?.(null, 0, 0);
+  };
 
   return (
     <motion.div variants={cardVariant}>
       <Link
         href={`/projects/${project.slug}`}
         className="group relative block p-8 md:p-10 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
+        onMouseEnter={handleMouseEnter}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Bottom accent sweep — slides in on hover */}
         <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />

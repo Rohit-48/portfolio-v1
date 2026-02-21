@@ -1,16 +1,73 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
+import { getFeaturedProjects } from "@/lib/projects";
+import { useProjectPreview } from "@/components/projects/ProjectPreviewContext";
+import type { ProjectMeta } from "@/types/project";
 
-const projects = [
-  { number: "001", title: "CYBERPUNK COMPONENTS", tags: ["NEXT.JS", "TYPESCRIPT", "TAILWIND"], slug: "cyberpunk-components-library", status: "WIP" },
-  { number: "002", title: "T-BROWSEE", tags: ["RUST", "ACTIX-WEB", "CLI"], slug: "t-browsee", status: "WIP" },
-  { number: "003", title: "CYBERDECK", tags: ["NEXT.JS", "TYPESCRIPT", "SHADCN"], slug: "cyberdeck", status: "LIVE" },
-];
+const projects = getFeaturedProjects().slice(0, 3);
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
+
+function WorkGridCard({
+  project,
+  index,
+  variants,
+}: {
+  project: ProjectMeta;
+  index: number;
+  variants: Variants;
+}) {
+  const { setPreview } = useProjectPreview() ?? {};
+  const num = String(index + 1).padStart(3, "0");
+  const statusLabel = project.status.toUpperCase();
+
+  return (
+    <motion.div variants={variants}>
+      <Link
+        href={`/projects/${project.slug}`}
+        className="group relative flex items-center justify-between gap-4 px-6 py-5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
+        onMouseEnter={(e) => setPreview?.(project, e.clientX, e.clientY)}
+        onMouseMove={(e) => setPreview?.(project, e.clientX, e.clientY)}
+        onMouseLeave={() => setPreview?.(null, 0, 0)}
+      >
+        <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
+
+        {/* Left: number + title + tags */}
+        <div className="flex items-center gap-4 min-w-0">
+          <span className="font-mono text-[11px] text-accent tracking-label font-medium shrink-0">
+            {num}
+          </span>
+          <h3 className="font-mono text-[16px] md:text-[18px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
+            {project.title}
+          </h3>
+          <div className="hidden md:flex items-center gap-1.5 shrink-0">
+            {project.tags.slice(0, 3).map((t) => (
+              <span
+                key={t}
+                className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: status + arrow */}
+        <div className="flex items-center gap-4 shrink-0">
+          <span className="font-mono text-[10px] tracking-[0.1em] text-dim">
+            {statusLabel}
+          </span>
+          <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
+            &rarr;
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
 
 const headerVariant = (delay: number) => ({
   hidden: { opacity: 0, y: 16 },
@@ -74,45 +131,8 @@ export default function WorkGrid() {
           animate={inView ? "visible" : "hidden"}
           className="flex flex-col gap-3"
         >
-          {projects.map((p) => (
-            <motion.div key={p.number} variants={cardVariant}>
-              <Link
-                href={`/projects/${p.slug}`}
-                className="group relative flex items-center justify-between gap-4 px-6 py-5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
-              >
-                <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
-
-                {/* Left: number + title + tags */}
-                <div className="flex items-center gap-4 min-w-0">
-                  <span className="font-mono text-[11px] text-accent tracking-label font-medium shrink-0">
-                    {p.number}
-                  </span>
-                  <h3 className="font-mono text-[16px] md:text-[18px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
-                    {p.title}
-                  </h3>
-                  <div className="hidden md:flex items-center gap-1.5 shrink-0">
-                    {p.tags.slice(0, 3).map((t) => (
-                      <span
-                        key={t}
-                        className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right: status + arrow */}
-                <div className="flex items-center gap-4 shrink-0">
-                  <span className="font-mono text-[10px] tracking-[0.1em] text-dim">
-                    {p.status}
-                  </span>
-                  <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
-                    &rarr;
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
+          {projects.map((p, i) => (
+            <WorkGridCard key={p.slug} project={p} index={i} variants={cardVariant} />
           ))}
         </motion.div>
 

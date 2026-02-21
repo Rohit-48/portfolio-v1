@@ -4,12 +4,14 @@ import About from "@/components/About";
 import WorkGrid from "@/components/WorkGrid";
 import BlogPreview from "@/components/BlogPreview";
 import Contact from "@/components/contact/Contact";
+import { getAllPosts } from "@/lib/blog";
 import SpotifyPlayer from "@/components/spotify/SpotifyPlayer";
 import CursorRing from "@/components/CursorRing";
 import ParticleBackground from "@/components/background/ParticleBackground";
 import PatternOverlay from "@/components/background/PatternOverlay";
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 2);
   return (
     <>
       <ParticleBackground />
@@ -20,7 +22,7 @@ export default function Home() {
         <Hero />
         <About />
         <WorkGrid />
-        <BlogPreview />
+        <BlogPreview posts={posts} />
         <Contact />
         <SpotifyPlayer />
         <footer className="px-6 md:px-12 lg:px-[300px] pb-16">

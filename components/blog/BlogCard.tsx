@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { BlogMeta } from "@/types/blog";
 import { formatDateShort } from "@/lib/utils";
+import { useBlogPreview } from "./BlogPreviewContext";
 
 interface BlogCardProps {
   post: BlogMeta;
@@ -19,11 +20,16 @@ const cardVariant = {
 };
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const { setPreview } = useBlogPreview() ?? {};
+
   return (
     <motion.div variants={cardVariant}>
       <Link
         href={`/blog/${post.slug}`}
         className="group relative block p-8 md:p-10 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
+        onMouseEnter={(e) => setPreview?.(post, e.clientX, e.clientY)}
+        onMouseMove={(e) => setPreview?.(post, e.clientX, e.clientY)}
+        onMouseLeave={() => setPreview?.(null, 0, 0)}
       >
         {/* Bottom accent sweep — slides in on hover */}
         <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />

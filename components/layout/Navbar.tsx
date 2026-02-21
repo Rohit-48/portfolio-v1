@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "@/components/ui/ThemeToggle";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -56,11 +56,11 @@ export default function Navbar() {
               )}>{link.label}</Link>
             ))}
             <div className="w-px h-4 bg-border" />
-            <ThemeToggle />
+            <AnimatedThemeToggler />
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
-            <ThemeToggle />
+            <AnimatedThemeToggler />
             <button onClick={() => setMobileOpen(!mobileOpen)} className="flex flex-col gap-[5px] p-2" aria-label="Toggle menu" aria-expanded={mobileOpen}>
               <span className={cn("block w-5 h-px bg-primary transition-transform duration-200", mobileOpen && "rotate-45 translate-y-[3px]")} />
               <span className={cn("block w-5 h-px bg-primary transition-opacity duration-200", mobileOpen && "opacity-0")} />
