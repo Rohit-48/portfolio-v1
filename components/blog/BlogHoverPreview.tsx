@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { BlogMeta } from "@/types/blog";
 import { formatDateShort } from "@/lib/utils";
@@ -13,6 +14,20 @@ interface BlogHoverPreviewProps {
   y: number;
 }
 
+function computePosition(x: number, y: number) {
+  if (typeof window === "undefined")
+    return { left: x + CURSOR_OFFSET, top: Math.max(12, y - PREVIEW_SIZE / 2) };
+  const left = Math.min(
+    x + CURSOR_OFFSET,
+    window.innerWidth - PREVIEW_SIZE - 16
+  );
+  const top = Math.max(
+    12,
+    Math.min(y - PREVIEW_SIZE / 2, window.innerHeight - PREVIEW_SIZE - 12)
+  );
+  return { left, top };
+}
+
 export default function BlogHoverPreview({
   post,
   x,
@@ -20,24 +35,27 @@ export default function BlogHoverPreview({
 }: BlogHoverPreviewProps) {
   const visible = post !== null;
 
-  const left = Math.min(
-    x + CURSOR_OFFSET,
-    typeof window !== "undefined" ? window.innerWidth - PREVIEW_SIZE - 16 : x + CURSOR_OFFSET
-  );
-  const top = Math.max(
-    12,
-    Math.min(
-      y - PREVIEW_SIZE / 2,
-      typeof window !== "undefined" ? window.innerHeight - PREVIEW_SIZE - 12 : y - PREVIEW_SIZE / 2
-    )
-  );
+  const [leftState, setLeftState] = useState(x + CURSOR_OFFSET);
+  const [topState, setTopState] = useState(Math.max(12, y - PREVIEW_SIZE / 2));
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!mounted) return;
+    const { left, top } = computePosition(x, y);
+    setLeftState(left);
+    setTopState(top);
+  }, [mounted, x, y]);
 
   return (
     <AnimatePresence>
       {visible && post && (
         <motion.div
           className="fixed z-[9999] pointer-events-none"
-          style={{ left, top }}
+          style={{ left: leftState, top: topState }}
           initial={{
             opacity: 0,
             scale: 0.7,

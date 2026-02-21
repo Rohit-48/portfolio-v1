@@ -7,14 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export default function ThemeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
 
   if (!mounted) return <div className={cn("w-10 h-10 border border-border2", className)} />;
 
-  const isDark = theme === "dark";
+  const isDark = (resolvedTheme ?? theme) === "dark";
 
   return (
     <motion.button

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import { Mail, Phone } from "lucide-react";
 import {
   SiGithub,
@@ -31,7 +32,7 @@ interface SocialLink {
 
 const socials: SocialLink[] = [
   { label: "GITHUB", href: "https://github.com/Rohit-48", tag: "Open source", icon: SiGithub, brand: "#8B949E" },
-  { label: "X", href: "https://x.com/rohitcpp", tag: "Short thoughts", icon: SiX, brand: "#000000", hoverColor: "#FFFFFF" },
+  { label: "X", href: "https://x.com/rohitcpp", tag: "Short thoughts", icon: SiX, brand: "#000000", hoverColor: undefined },
   { label: "LINKEDIN", href: "https://linkedin.com/in/rohit48", tag: "Career", icon: SiLinkedin, brand: "#0A66C2" },
   { label: "DISCORD", href: "https://discord.com/users/rohitvince0", tag: "Chat", icon: SiDiscord, brand: "#5865F2" },
   { label: "BOOK A CALL", href: "https://cal.com/rohitvince0", tag: "Schedule", icon: SiCaldotcom, brand: "#FF6B4A" },
@@ -71,8 +72,22 @@ const socialStagger = {
   visible: { transition: { staggerChildren: 0.04, delayChildren: 0.5 } },
 };
 
-function SocialCard({ s, variants }: { s: SocialLink; variants: typeof socialCard }) {
+function SocialCard({
+  s,
+  variants,
+  resolvedTheme,
+}: {
+  s: SocialLink;
+  variants: typeof socialCard;
+  resolvedTheme?: string;
+}) {
   const [hovered, setHovered] = useState(false);
+  const isX = s.label === "X";
+  const effectiveHoverColor = isX
+    ? resolvedTheme === "dark"
+      ? "#FFFFFF"
+      : "#000000"
+    : s.hoverColor ?? s.brand;
 
   return (
     <motion.a
@@ -84,26 +99,26 @@ function SocialCard({ s, variants }: { s: SocialLink; variants: typeof socialCar
       onMouseLeave={() => setHovered(false)}
       className="group relative flex items-start gap-3 p-4 border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:-translate-y-0.5"
       style={{
-        borderColor: hovered ? `${s.hoverColor ?? s.brand}66` : "var(--border)",
-        backgroundColor: hovered ? `${s.hoverColor ?? s.brand}0F` : "transparent",
+        borderColor: hovered ? `${effectiveHoverColor}66` : "var(--border)",
+        backgroundColor: hovered ? `${effectiveHoverColor}0F` : "transparent",
       }}
     >
       <span
         className="absolute bottom-0 left-0 h-px transition-[width] duration-300 ease-out"
         style={{
           width: hovered ? "100%" : "0%",
-          backgroundColor: s.hoverColor ?? s.brand,
+          backgroundColor: effectiveHoverColor,
         }}
       />
       <s.icon
         size={16}
         className="mt-0.5 shrink-0 transition-colors duration-150 ease-out"
-        style={{ color: hovered ? (s.hoverColor ?? s.brand) : "var(--dim)" }}
+        style={{ color: hovered ? effectiveHoverColor : "var(--dim)" }}
       />
       <span className="flex flex-col min-w-0">
         <span
           className="font-mono text-[13px] tracking-nav uppercase transition-colors duration-150 ease-out truncate"
-          style={{ color: hovered ? (s.hoverColor ?? s.brand) : "var(--primary)" }}
+          style={{ color: hovered ? effectiveHoverColor : "var(--primary)" }}
         >
           {s.label}
         </span>
@@ -118,6 +133,7 @@ function SocialCard({ s, variants }: { s: SocialLink; variants: typeof socialCar
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { resolvedTheme } = useTheme();
 
   return (
     <section id="contact" ref={ref} className="min-h-[70vh] flex flex-col">
@@ -236,7 +252,7 @@ export default function Contact() {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-16"
         >
           {socials.map((s) => (
-            <SocialCard key={s.label} s={s} variants={socialCard} />
+            <SocialCard key={s.label} s={s} variants={socialCard} resolvedTheme={resolvedTheme} />
           ))}
         </motion.div>
 
