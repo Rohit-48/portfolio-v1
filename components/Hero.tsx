@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -83,15 +82,17 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div {...slideUp(0.56)} className="flex items-center gap-4">
-              <Link
-                href="/projects"
+              <a
+                href="/Resume%20(1).pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 h-11 px-6 bg-accent font-mono text-[12px] text-[#F0F0F0] tracking-label uppercase transition-colors duration-150 ease-out hover:bg-accent-hover"
               >
-                VIEW WORK
+                RESUME
                 <span className="inline-block group-hover:translate-x-1 transition-transform duration-150 ease-out">
                   &rarr;
                 </span>
-              </Link>
+              </a>
               <a
                 href="#contact"
                 className="group inline-flex items-center gap-3 h-11 px-6 border border-border font-mono text-[12px] text-primary tracking-label uppercase transition-colors duration-150 ease-out hover:border-accent hover:text-accent"
