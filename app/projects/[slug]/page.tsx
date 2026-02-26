@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <PatternOverlay />
       <CursorRing />
       <Navbar />
-      <PageWrapper>
+      <PageWrapper className="max-w-3xl mx-auto px-6 md:px-6 lg:px-6 pt-32 pb-40">
         <ProjectDetail project={project} prev={prev} next={next} />
       </PageWrapper>
     </>
