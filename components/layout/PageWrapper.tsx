@@ -8,7 +8,7 @@ interface PageWrapperProps {
 export default function PageWrapper({ children, className }: PageWrapperProps) {
   return (
     <main id="main-content" className="relative z-10 min-h-screen">
-      <div className={cn("px-6 md:px-12 lg:px-[300px] pt-32 pb-40", className)}>
+      <div className={cn("px-8 md:px-16 lg:px-[340px] pt-32 pb-40", className)}>
         {children}
       </div>
     </main>

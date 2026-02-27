@@ -40,32 +40,38 @@ export default function Navbar() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         aria-label="Main navigation"
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 h-14 transition-[background-color,backdrop-filter] duration-200 border-b border-border",
-          scrolled ? "bg-bg/80 backdrop-blur-md" : "bg-bg"
-        )}
+        className="fixed top-4 inset-x-0 z-50"
       >
-        <div className="h-full px-6 md:px-12 lg:px-[300px] flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm text-primary tracking-nav font-medium">rohit.builds</Link>
+        <div className="px-8 md:px-16 lg:px-[340px]">
+          <div
+            className={cn(
+              "h-14 border border-border transition-[background-color,backdrop-filter] duration-200",
+              scrolled ? "bg-bg/80 backdrop-blur-[12px]" : "bg-bg"
+            )}
+          >
+            <div className="h-full px-4 md:px-5 flex items-center justify-between">
+              <Link href="/" className="font-mono text-sm text-primary tracking-nav font-medium">rohit.builds</Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className={cn(
-                "font-sans text-[13px] tracking-nav uppercase transition-colors duration-[80ms] linear",
-                isActive(link.href) ? "text-accent" : "text-ghost hover:text-primary"
-              )}>{link.label}</Link>
-            ))}
-            <div className="w-px h-4 bg-border" />
-            <AnimatedThemeToggler />
-          </div>
+              <div className="hidden md:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <Link key={link.href} href={link.href} className={cn(
+                    "font-sans text-[13px] tracking-nav uppercase transition-colors duration-[80ms] linear",
+                    isActive(link.href) ? "text-accent" : "text-ghost hover:text-primary"
+                  )}>{link.label}</Link>
+                ))}
+                <div className="w-px h-4 bg-border" />
+                <AnimatedThemeToggler />
+              </div>
 
-          <div className="flex items-center gap-4 md:hidden">
-            <AnimatedThemeToggler />
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="flex flex-col gap-[5px] p-2" aria-label="Toggle menu" aria-expanded={mobileOpen}>
-              <span className={cn("block w-5 h-px bg-primary transition-transform duration-200", mobileOpen && "rotate-45 translate-y-[3px]")} />
-              <span className={cn("block w-5 h-px bg-primary transition-opacity duration-200", mobileOpen && "opacity-0")} />
-              <span className={cn("block w-5 h-px bg-primary transition-transform duration-200", mobileOpen && "-rotate-45 -translate-y-[3px]")} />
-            </button>
+              <div className="flex items-center gap-4 md:hidden">
+                <AnimatedThemeToggler />
+                <button onClick={() => setMobileOpen(!mobileOpen)} className="flex flex-col gap-[5px] p-2" aria-label="Toggle menu" aria-expanded={mobileOpen}>
+                  <span className={cn("block w-5 h-px bg-primary transition-transform duration-200", mobileOpen && "rotate-45 translate-y-[3px]")} />
+                  <span className={cn("block w-5 h-px bg-primary transition-opacity duration-200", mobileOpen && "opacity-0")} />
+                  <span className={cn("block w-5 h-px bg-primary transition-transform duration-200", mobileOpen && "-rotate-45 -translate-y-[3px]")} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </motion.nav>

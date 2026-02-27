@@ -53,7 +53,7 @@ export default function SpotifyPlayer() {
 
   return (
     <section className="py-20" ref={ref}>
-      <div className="px-6 md:px-12 lg:px-[300px]">
+      <div className="px-8 md:px-16 lg:px-[340px]">
         <motion.span
           variants={fadeUp}
           initial="hidden"

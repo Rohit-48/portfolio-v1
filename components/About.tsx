@@ -14,7 +14,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-16">
-      <div className="px-6 md:px-12 lg:px-[300px]">
+      <div className="px-8 md:px-16 lg:px-[340px]">
         <motion.div ref={ref} variants={containerV} initial="hidden" animate={inView ? "visible" : "hidden"}>
           <div>
             <div>

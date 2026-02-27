@@ -7,14 +7,12 @@ import Contact from "@/components/contact/Contact";
 import { getAllPosts } from "@/lib/blog";
 import SpotifyPlayer from "@/components/spotify/SpotifyPlayer";
 import CursorRing from "@/components/CursorRing";
-import ParticleBackground from "@/components/background/ParticleBackground";
 import PatternOverlay from "@/components/background/PatternOverlay";
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 2);
   return (
     <>
-      <ParticleBackground />
       <PatternOverlay />
       <CursorRing />
       <Nav />
@@ -25,7 +23,7 @@ export default function Home() {
         <BlogPreview posts={posts} />
         <Contact />
         <SpotifyPlayer />
-        <footer className="px-6 md:px-12 lg:px-[300px] pb-16">
+        <footer className="px-8 md:px-16 lg:px-[340px] pb-16">
           <div className="border-t border-border" />
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-8 gap-2">
             <span className="font-mono text-[10px] text-border2 tracking-tag">

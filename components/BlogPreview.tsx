@@ -87,7 +87,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
 
   return (
     <section id="writing" className="py-20">
-      <div className="px-6 md:px-12 lg:px-[300px]" ref={ref}>
+      <div className="px-8 md:px-16 lg:px-[340px]" ref={ref}>
         {/* Header */}
         <motion.span
           variants={headerVariant(0)}

@@ -26,7 +26,7 @@ const slideLeft = (delay: number) => ({
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center">
-      <div className="px-6 md:px-12 lg:px-[300px] w-full pt-28 pb-32">
+      <div className="px-8 md:px-16 lg:px-[340px] w-full pt-28 pb-32">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16">
           {/* Left column */}
           <div className="min-w-0 max-w-2xl">

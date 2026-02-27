@@ -139,7 +139,7 @@ export default function Contact() {
     <section id="contact" ref={ref} className="min-h-[70vh] flex flex-col">
       <div className="border-t border-border" />
 
-      <div className="px-6 md:px-12 lg:px-[300px] pt-28 pb-16 flex flex-col flex-1">
+      <div className="px-8 md:px-16 lg:px-[340px] pt-28 pb-16 flex flex-col flex-1">
         {/* Availability badge */}
         <motion.div
           variants={fadeUp(0)}
