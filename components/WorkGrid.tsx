@@ -89,8 +89,8 @@ export default function WorkGrid() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="work" className="py-20">
-      <div className="px-8 md:px-16 lg:px-[340px]" ref={ref}>
+    <section id="work" className="py-14">
+      <div className="px-8 md:px-16 xl:px-[340px]" ref={ref}>
         {/* Header */}
         <motion.span
           variants={headerVariant(0)}

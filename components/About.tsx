@@ -13,8 +13,8 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-16">
-      <div className="px-8 md:px-16 lg:px-[340px]">
+    <section id="about" className="py-12">
+      <div className="px-8 md:px-16 xl:px-[340px]">
         <motion.div ref={ref} variants={containerV} initial="hidden" animate={inView ? "visible" : "hidden"}>
           <div>
             <div>

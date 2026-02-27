@@ -42,7 +42,7 @@ export default function Navbar() {
         aria-label="Main navigation"
         className="fixed top-4 inset-x-0 z-50"
       >
-        <div className="px-8 md:px-16 lg:px-[340px]">
+        <div className="px-8 md:px-16 xl:px-[340px]">
           <div
             className={cn(
               "h-14 border border-border transition-[background-color,backdrop-filter] duration-200",

@@ -23,7 +23,7 @@ export default function Home() {
         <BlogPreview posts={posts} />
         <Contact />
         <SpotifyPlayer />
-        <footer className="px-8 md:px-16 lg:px-[340px] pb-16">
+        <footer className="px-8 md:px-16 xl:px-[340px] pb-16">
           <div className="border-t border-border" />
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-8 gap-2">
             <span className="font-mono text-[10px] text-border2 tracking-tag">

@@ -52,8 +52,8 @@ export default function SpotifyPlayer() {
   const hasLastPlayed = data?.lastPlayed;
 
   return (
-    <section className="py-20" ref={ref}>
-      <div className="px-8 md:px-16 lg:px-[340px]">
+    <section className="py-14" ref={ref}>
+      <div className="px-8 md:px-16 xl:px-[340px]">
         <motion.span
           variants={fadeUp}
           initial="hidden"
