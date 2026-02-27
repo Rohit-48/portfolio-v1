@@ -12,7 +12,7 @@
 
 /* ━━━ Light mode (default) ━━━ */
 :root {
-  --bg: #FFFFFF;
+  --bg: #EDF2F4;
   --surface: #EBEBEB;
   --surface2: #E0E0DA;
   --surface-hover: #E2E2DC;
@@ -32,22 +32,22 @@
 
 /* ━━━ Dark mode ━━━ */
 .dark {
-  --bg: #FFFFFF;
-  --surface: #EBEBEB;
-  --surface2: #E0E0DA;
-  --surface-hover: #E2E2DC;
-  --border: #D0D0C8;
-  --border2: #C0C0B8;
-  --muted: #999990;
-  --ghost: #666660;
-  --primary: #0A0A0A;
-  --accent: #2563EB;
-  --accent-hover: #1D4ED8;
-  --secondary: #444440;
-  --dim: #888880;
-  --accent-muted: #2563EB20;
-  --tag-border: #C8C8C0;
-  --tag-text: #555550;
+  --bg: #090B10;
+  --surface: #101521;
+  --surface2: #171D2C;
+  --surface-hover: #1E2638;
+  --border: #283149;
+  --border2: #33405D;
+  --muted: #7B869E;
+  --ghost: #9AA6C0;
+  --primary: #F2F6FF;
+  --accent: #60A5FA;
+  --accent-hover: #93C5FD;
+  --secondary: #C3CCE0;
+  --dim: #8B97B0;
+  --accent-muted: #60A5FA1F;
+  --tag-border: #2A3550;
+  --tag-text: #C7D1E7;
 }
 
 /* ━━━ Tailwind v4 theme tokens ━━━ */

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { useTheme } from "next-themes";
@@ -16,27 +16,9 @@ export function AnimatedThemeToggler({
   ...props
 }: AnimatedThemeTogglerProps) {
   const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    const updateTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    };
-    updateTheme();
-    const observer = new MutationObserver(updateTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, [mounted, resolvedTheme]);
+  const mounted = resolvedTheme !== undefined;
+  const isDark = resolvedTheme === "dark";
 
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current || !mounted) return;
@@ -44,7 +26,6 @@ export function AnimatedThemeToggler({
 
     const applyTheme = () => {
       flushSync(() => {
-        document.documentElement.classList.toggle("dark", newTheme);
         setTheme(newTheme ? "dark" : "light");
       });
     };
