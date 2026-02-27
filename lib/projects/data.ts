@@ -1,4 +1,4 @@
-import type { Project, ProjectMeta } from "@/types/project";
+import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
@@ -212,28 +212,3 @@ Yapitte is a social media platform built from scratch with Django.
   },
 ];
 
-export function getAllProjects(): ProjectMeta[] {
-  return projects.map((project) => ({
-    slug: project.slug,
-    title: project.title,
-    description: project.description,
-    tags: project.tags,
-    status: project.status,
-    year: project.year,
-    githubUrl: project.githubUrl,
-    liveUrl: project.liveUrl,
-    featured: project.featured,
-  }));
-}
-
-export function getFeaturedProjects(): ProjectMeta[] {
-  return getAllProjects().filter((p) => p.featured);
-}
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
-}
-
-export function getAllProjectSlugs(): string[] {
-  return projects.map((p) => p.slug);
-}
