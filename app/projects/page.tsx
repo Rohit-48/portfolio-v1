@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getAllProjects } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import PatternOverlay from "@/components/background/PatternOverlay";
 import CursorRing from "@/components/CursorRing";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 
@@ -17,7 +16,6 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <PatternOverlay />
       <CursorRing />
       <Navbar />
       <PageWrapper>

@@ -7,7 +7,6 @@ import {
 } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import PatternOverlay from "@/components/background/PatternOverlay";
 import CursorRing from "@/components/CursorRing";
 import ProjectDetail from "@/components/projects/ProjectDetail";
 
@@ -50,7 +49,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <PatternOverlay />
       <CursorRing />
       <Navbar />
       <PageWrapper className="max-w-3xl mx-auto px-8 md:px-8 lg:px-8 pt-32 pb-40">

@@ -7,13 +7,11 @@ import Contact from "@/components/contact/Contact";
 import { getAllPosts } from "@/lib/blog";
 import SpotifyPlayer from "@/components/spotify/SpotifyPlayer";
 import CursorRing from "@/components/CursorRing";
-import PatternOverlay from "@/components/background/PatternOverlay";
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 2);
   return (
     <>
-      <PatternOverlay />
       <CursorRing />
       <Nav />
       <main id="main-content" className="relative z-10">

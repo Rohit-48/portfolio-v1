@@ -12,7 +12,7 @@
 
 /* ━━━ Light mode (default) ━━━ */
 :root {
-  --bg: #F5F5F0;
+  --bg: #FFFFFF;
   --surface: #EBEBEB;
   --surface2: #E0E0DA;
   --surface-hover: #E2E2DC;
@@ -32,22 +32,22 @@
 
 /* ━━━ Dark mode ━━━ */
 .dark {
-  --bg: #0A0A0A;
-  --surface: #111111;
-  --surface2: #1A1A1A;
-  --surface-hover: #161616;
-  --border: #222222;
-  --border2: #333333;
-  --muted: #555555;
-  --ghost: #888888;
-  --primary: #F0F0F0;
-  --accent: #3B82F6;
-  --accent-hover: #2563EB;
-  --secondary: #A0A0A0;
-  --dim: #555555;
-  --accent-muted: #1D4ED840;
-  --tag-border: #2A2A2A;
-  --tag-text: #888888;
+  --bg: #FFFFFF;
+  --surface: #EBEBEB;
+  --surface2: #E0E0DA;
+  --surface-hover: #E2E2DC;
+  --border: #D0D0C8;
+  --border2: #C0C0B8;
+  --muted: #999990;
+  --ghost: #666660;
+  --primary: #0A0A0A;
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --secondary: #444440;
+  --dim: #888880;
+  --accent-muted: #2563EB20;
+  --tag-border: #C8C8C0;
+  --tag-text: #555550;
 }
 
 /* ━━━ Tailwind v4 theme tokens ━━━ */
@@ -96,82 +96,6 @@ body {
   color: var(--primary);
   font-family: var(--font-sans);
   cursor: crosshair;
-}
-
-/* ━━━ Premium graph-paper overlay (structural grid + vignette + grain) ━━━ */
-.pattern-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  --grid-tint-rgb: 245 197 24;
-  --grid-minor-alpha: 0.025;
-  --grid-major-alpha: 0.04;
-  --vignette-rgb: 245 245 240;
-  --grain-opacity: 0.02;
-  background-image:
-    linear-gradient(to right, rgb(var(--grid-tint-rgb) / var(--grid-minor-alpha)) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--grid-tint-rgb) / var(--grid-minor-alpha)) 1px, transparent 1px),
-    linear-gradient(to right, rgb(var(--grid-tint-rgb) / var(--grid-major-alpha)) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--grid-tint-rgb) / var(--grid-major-alpha)) 1px, transparent 1px);
-  background-size: 16px 16px, 16px 16px, 64px 64px, 64px 64px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-}
-
-.dark .pattern-overlay {
-  --grid-minor-alpha: 0.04;
-  --grid-major-alpha: 0.06;
-  --vignette-rgb: 10 10 10;
-}
-
-.pattern-overlay::before,
-.pattern-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* Fallback edge fade when mask support is unavailable */
-.pattern-overlay::before {
-  background: radial-gradient(
-    circle at center,
-    transparent 34%,
-    rgb(var(--vignette-rgb) / 0.08) 62%,
-    rgb(var(--vignette-rgb) / 0.2) 82%,
-    rgb(var(--vignette-rgb) / 0.34) 100%
-  );
-}
-
-/* Very subtle film grain to avoid a flat digital look */
-.pattern-overlay::after {
-  opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.85'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  background-repeat: repeat;
-}
-
-@supports ((-webkit-mask-image: radial-gradient(black, transparent)) or (mask-image: radial-gradient(black, transparent))) {
-  .pattern-overlay {
-    -webkit-mask-image: radial-gradient(
-      circle at center,
-      rgb(0 0 0 / 1) 32%,
-      rgb(0 0 0 / 0.86) 62%,
-      rgb(0 0 0 / 0.54) 82%,
-      rgb(0 0 0 / 0.12) 100%
-    );
-    mask-image: radial-gradient(
-      circle at center,
-      rgb(0 0 0 / 1) 32%,
-      rgb(0 0 0 / 0.86) 62%,
-      rgb(0 0 0 / 0.54) 82%,
-      rgb(0 0 0 / 0.12) 100%
-    );
-  }
-
-  .pattern-overlay::before {
-    background: none;
-  }
 }
 
 ::selection {

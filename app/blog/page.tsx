@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import PatternOverlay from "@/components/background/PatternOverlay";
 import CursorRing from "@/components/CursorRing";
 import BlogGrid from "@/components/blog/BlogGrid";
 
@@ -17,7 +16,6 @@ export default function BlogPage() {
 
   return (
     <>
-      <PatternOverlay />
       <CursorRing />
       <Navbar />
       <PageWrapper>
