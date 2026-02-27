@@ -84,30 +84,67 @@ Next.js + TypeScript + Tailwind CSS + Shadcn UI. Deployed on Netlify.`,
   },
   {
     slug: "Neurolink",
-    title: "Neurolink",
+    title: "NEUROLINK",
     description:
-      "NeroLink enables peer-to-peer file sharing across devices on the same local network. It provides both a web-based interface accessible via browsers and command-line tools for programmatic file transfers.",
-    tags: ["RUST", "ACTIX-WEB", "TOKIO", "CLI", "JAVASCRIPT", "TYPESCRIPT"],
+      "NeuroLink Monorepo v2.0 — peer-to-peer file sharing across devices on the same local network with dual runtime support: Express (Node.js) and Rust (Axum).",
+    tags: ["RUST", "AXUM", "EXPRESS", "NODE.JS", "TYPESCRIPT"],
     status: "live",
     year: 2026,
     githubUrl: "https://github.com/Rohit-48/Neurolink",
     featured: true,
-    stack: ["Rust", "Actix-web", "Tokio", "JavaScript", "TypeScript"],
+    stack: ["Rust", "Axum", "Express", "Node.js", "TypeScript"],
     content: `## Overview
 
-Neurolink is a file sharing platform built with Rust, Actix-web, and Tokio.
+NeuroLink Monorepo v2.0 — two separate apps in one repo:
 
-## Features
+- **neurolink** (Express, Node.js) in \`apps/neurolink\`
+- **neurolinkrs / neurolinkd** (Rust, Axum) in \`apps/neurolinkrs\`
 
-- **File Sharing** — share files with other devices on the same local network
-- **Web Interface** — access the platform via a web browser
-- **Command Line** — use the platform via a command line interface
-- **Neon UI** — full cyberpunk design system
-- **Responsive** — works across desktop and mobile
+## Run Commands
+
+\`\`\`bash
+# Express app (default 3000)
+npm run dev:neurolink
+
+# Rust app (default 3001)
+npm run dev:neurolinkrs
+
+# Rust daemon (default 3001)
+npm run dev:neurolinkd
+\`\`\`
+
+## Core Features (Both Apps)
+
+- **Batch Upload** — folder-first flow + multi-file fallback via web UI
+- **File Listing** — list uploaded files and batches
+- **Individual Download** — download single files
+- **Batch Archive** — download batch as ZIP
+- **Diff Download** — download differences between batches
+
+## Common Endpoints
+
+\`\`\`
+GET  /
+GET  /health
+GET  /files
+GET  /uploads
+GET  /shared/:filename
+GET  /download/batch/:batch_id
+POST /transfer/init
+POST /transfer/chunk
+POST /transfer/complete
+\`\`\`
+
+## CLI Banners
+
+Each CLI prints a colored ASCII banner on launch:
+- **neurolink** → NEUROLINK · Express Runtime
+- **neurolinkrs** → NEUROLINKRS 2.0 - Rust Service
+- **neurolinkd** → NEUROLINKD 2.0 - Rust Daemon
 
 ## Stack
 
-Rust + Actix-web + Tokio + JavaScript + TypeScript. Deployed on Netlify.`,
+Rust + Axum + Express + Node.js + TypeScript.`,
   },
   {
     slug: "task-rs",

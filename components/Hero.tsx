@@ -83,7 +83,7 @@ export default function Hero() {
             {/* CTAs */}
             <motion.div {...slideUp(0.56)} className="flex items-center gap-4">
               <a
-                href="/Resume%20(1).pdf"
+                href="/uResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 h-11 px-6 bg-accent font-mono text-[12px] text-[#F0F0F0] tracking-label uppercase transition-colors duration-150 ease-out hover:bg-accent-hover"
