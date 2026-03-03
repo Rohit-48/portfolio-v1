@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  getProjectBySlug,
-  getAllProjectSlugs,
-  getAllProjects,
-} from "@/lib/projects";
+import { getProjectBySlug, getAllProjectSlugs, getAllProjects } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
 import CursorRing from "@/components/CursorRing";
@@ -37,7 +33,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   const allProjects = getAllProjects();
-  const idx = allProjects.findIndex((p) => p.slug === slug);
+  const idx = allProjects.findIndex((p) => p.slug === project.slug);
 
   const prev =
     idx > 0

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { useTheme } from "next-themes";
@@ -17,8 +17,11 @@ export function AnimatedThemeToggler({
 }: AnimatedThemeTogglerProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = useCallback(async () => {
@@ -64,7 +67,7 @@ export function AnimatedThemeToggler({
     }
   }, [isDark, duration, mounted, setTheme]);
 
-  if (!mounted) {
+  if (!mounted || resolvedTheme === undefined) {
     return (
       <div
         className={cn(

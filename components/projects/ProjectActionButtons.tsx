@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 interface ProjectActionButtonsProps {
   liveUrl?: string;
   githubUrl?: string;
@@ -25,7 +27,8 @@ export default function ProjectActionButtons({
           aria-label={`View live site for ${projectTitle}`}
           className={`${baseButtonClass} w-full sm:w-auto border-accent bg-accent text-white hover:bg-transparent hover:text-accent`}
         >
-          View Live Site <span className="ml-2">↗</span>
+          View Live Site
+          <ArrowUpRight className="ml-2 h-3 w-3" aria-hidden="true" />
         </a>
       ) : null}
 
@@ -41,16 +44,15 @@ export default function ProjectActionButtons({
               : "border-border bg-transparent text-primary hover:border-accent hover:text-accent"
           }`}
         >
-          View on GitHub{" "}
-          <span
-            className={`ml-2 ${
+          View on GitHub
+          <ArrowUpRight
+            className={`ml-2 h-3 w-3 ${
               hasOnlyGithub
                 ? "text-current"
-                : "text-ghost transition-colors duration-[120ms] ease-linear group-hover:text-accent"
+                : "text-ghost transition-colors duration-120 ease-linear group-hover:text-accent"
             }`}
-          >
-            ↗
-          </span>
+            aria-hidden="true"
+          />
         </a>
       ) : null}
     </div>

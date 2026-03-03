@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Rohit" }],
   creator: "Rohit",
   icons: {
-    icon: "/my-notion-face-transparent.png",
-    shortcut: "/my-notion-face-transparent.png",
-    apple: "/my-notion-face-transparent.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
   openGraph: {
     type: "website",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       "Software developer and CS student. Better at problem solving and building systems with no DX overhead.",
     images: [
       {
-        url: `${BASE_URL}/avatar.png`,
+        url: `${BASE_URL}/og.png`,
         width: 1200,
         height: 630,
         alt: "Rohit - Software Developer",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     description:
       "Software developer and CS student. Better at problem solving and building systems with no DX overhead.",
     creator: "@rohitcpp",
-    images: `${BASE_URL}/avatar.png`,
+    images: `${BASE_URL}/og.png`,
   },
   robots: {
     index: true,

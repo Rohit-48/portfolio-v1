@@ -1,6 +1,14 @@
 import type { Project, ProjectMeta } from "@/types/project";
 import { projects } from "./data";
 
+function normalizeSlug(slug: string): string {
+  try {
+    return decodeURIComponent(slug).trim().toLowerCase();
+  } catch {
+    return slug.trim().toLowerCase();
+  }
+}
+
 export function getAllProjects(): ProjectMeta[] {
   // Always return projects sorted by newest first so adding a new
   // project is as simple as appending it to the array above.
@@ -25,7 +33,8 @@ export function getFeaturedProjects(): ProjectMeta[] {
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
+  const normalizedTarget = normalizeSlug(slug);
+  return projects.find((p) => normalizeSlug(p.slug) === normalizedTarget);
 }
 
 export function getAllProjectSlugs(): string[] {

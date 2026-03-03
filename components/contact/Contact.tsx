@@ -202,33 +202,8 @@ export default function Contact() {
             </span>
           </span>
           <span className="flex items-center justify-between">
-            <span className="font-mono text-[20px] md:text-[26px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
+            <span className="font-mono text-[20px] md:text-[26px] sm:text-[20px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
               rohitmandavkar3477@gmail.com
-            </span>
-            <span className="font-mono text-accent text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
-              &nearr;
-            </span>
-          </span>
-        </motion.a>
-
-        {/* Phone card */}
-        <motion.a
-          href="tel:+917058315306"
-          variants={fadeUp(0.4)}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="group relative block p-6 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5 mb-16"
-        >
-          <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
-          <span className="flex items-center justify-between">
-            <span className="flex items-center gap-4">
-              <Phone size={16} className="text-dim" />
-              <span className="font-mono text-[12px] text-dim tracking-label uppercase">
-                PHONE
-              </span>
-              <span className="font-mono text-[17px] text-primary group-hover:text-accent transition-colors duration-150 ease-out">
-                +91 7058315306
-              </span>
             </span>
             <span className="font-mono text-accent text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
               &nearr;
