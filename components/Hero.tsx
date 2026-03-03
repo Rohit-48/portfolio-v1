@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -115,41 +114,6 @@ export default function Hero() {
               </span>
             </motion.div>
           </div>
-
-          {/* Right column — profile card */}
-          <motion.aside
-            {...fade(0.22)}
-            className="mt-10 xl:mt-0 shrink-0"
-          >
-            <div className="w-80 sm:w-96 md:w-[380px] xl:w-[440px] xl:h-[560px] border border-border/60 bg-surface overflow-hidden relative group shadow-2xl shadow-black/20">
-              <div className="absolute inset-0">
-                <Image
-                  src="/avatar.png"
-                  alt="Rohit portrait"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  priority
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-              <div className="absolute inset-0 border border-white/5" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-px w-10 bg-accent" />
-                  <span className="font-mono text-[10px] text-accent tracking-[0.25em] uppercase">
-                    Portfolio
-                  </span>
-                </div>
-                <h2 className="font-sora text-3xl font-semibold text-white tracking-tight">
-                  Rohit
-                </h2>
-                <p className="font-mono text-xs text-white/50 tracking-wide">
-                  Web Engineer
-                </p>
-              </div>
-              <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-accent/80 animate-pulse" />
-            </div>
-          </motion.aside>
         </div>
       </div>
     </section>
