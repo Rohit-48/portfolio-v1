@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { useTheme } from "next-themes";
@@ -17,7 +17,8 @@ export function AnimatedThemeToggler({
 }: AnimatedThemeTogglerProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const mounted = resolvedTheme !== undefined;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = useCallback(async () => {
@@ -66,7 +67,10 @@ export function AnimatedThemeToggler({
   if (!mounted) {
     return (
       <div
-        className={cn("w-10 h-10 flex items-center justify-center border border-border2", className)}
+        className={cn(
+          "w-10 h-10 flex items-center justify-center border border-border2 bg-transparent",
+          className
+        )}
         aria-hidden
       />
     );
