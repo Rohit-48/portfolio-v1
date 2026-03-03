@@ -2,10 +2,9 @@ export interface ProjectMeta {
   slug: string;
   title: string;
   description: string;
-  longDescription: string;
   tags: string[];
   status: "live" | "wip" | "archived";
-  year: string;
+  year: number;
   githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
@@ -13,4 +12,6 @@ export interface ProjectMeta {
 
 export interface Project extends ProjectMeta {
   content: string;
+  stack: string[];
+  screenshots?: string[];
 }

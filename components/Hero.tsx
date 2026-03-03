@@ -26,8 +26,8 @@ const slideLeft = (delay: number) => ({
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center">
-      <div className="px-6 md:px-12 lg:px-[300px] w-full pt-28 pb-32">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16">
+      <div className="px-8 md:px-16 xl:px-[340px] w-full pt-28 pb-24">
+        <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-12 xl:gap-16">
           {/* Left column */}
           <div className="min-w-0 max-w-2xl">
 
@@ -83,7 +83,7 @@ export default function Hero() {
             {/* CTAs */}
             <motion.div {...slideUp(0.56)} className="flex items-center gap-4">
               <a
-                href="/Resume%20(1).pdf"
+                href="/uResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 h-11 px-6 bg-accent font-mono text-[12px] text-[#F0F0F0] tracking-label uppercase transition-colors duration-150 ease-out hover:bg-accent-hover"
@@ -119,9 +119,9 @@ export default function Hero() {
           {/* Right column — profile card */}
           <motion.aside
             {...fade(0.22)}
-            className="mt-10 lg:mt-0 shrink-0"
+            className="mt-10 xl:mt-0 shrink-0"
           >
-            <div className="w-80 sm:w-96 md:w-[380px] lg:w-[440px] lg:h-[560px] border border-border/60 bg-surface overflow-hidden relative group shadow-2xl shadow-black/20">
+            <div className="w-80 sm:w-96 md:w-[380px] xl:w-[440px] xl:h-[560px] border border-border/60 bg-surface overflow-hidden relative group shadow-2xl shadow-black/20">
               <div className="absolute inset-0">
                 <Image
                   src="/avatar.png"

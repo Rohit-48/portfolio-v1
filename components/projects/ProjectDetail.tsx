@@ -1,5 +1,8 @@
-import type { Project } from "@/types/project";
+import Image from "next/image";
 import Link from "next/link";
+import type { Project } from "@/types/project";
+import ProjectActionButtons from "@/components/projects/ProjectActionButtons";
+import ProjectMetaGrid from "@/components/projects/ProjectMetaGrid";
 
 interface NavItem {
   slug: string;
@@ -26,152 +29,138 @@ function convertMarkdown(md: string): string {
     .replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m}</ul>`)
     .split("\n\n")
     .map((block) => {
-      const t = block.trim();
+      const text = block.trim();
       if (
-        !t ||
-        t.startsWith("<h") ||
-        t.startsWith("<ul") ||
-        t.startsWith("<pre") ||
-        t.startsWith("<blockquote")
-      )
-        return t;
-      return `<p>${t}</p>`;
+        !text ||
+        text.startsWith("<h") ||
+        text.startsWith("<ul") ||
+        text.startsWith("<pre") ||
+        text.startsWith("<blockquote")
+      ) {
+        return text;
+      }
+      return `<p>${text}</p>`;
     })
     .join("\n");
 }
 
-const statusDisplay: Record<string, { className: string; label: string }> = {
-  live: { className: "text-accent", label: "LIVE" },
-  wip: { className: "text-muted", label: "WIP" },
-  archived: { className: "text-dim", label: "ARCHIVED" },
+const statusBadgeMap: Record<Project["status"], string> = {
+  live: "border-accent text-accent",
+  wip: "border-[#92400E] text-[#92400E] dark:border-[#D97706] dark:text-[#D97706]",
+  archived: "border-[#555555] text-[#555555]",
+};
+
+const statusLabelMap: Record<Project["status"], string> = {
+  live: "LIVE",
+  wip: "WIP",
+  archived: "ARCHIVED",
 };
 
 export default function ProjectDetail({ project, prev, next }: ProjectDetailProps) {
-  const status = statusDisplay[project.status];
+  const navJustify = prev && next ? "justify-between" : prev ? "justify-start" : "justify-end";
 
   return (
-    <div className="max-w-[720px] mx-auto">
-      {/* Back link */}
+    <div className="w-full">
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 font-mono text-[11px] text-dim tracking-label uppercase hover:text-accent transition-colors duration-[80ms] mb-12"
+        className="mb-10 inline-flex items-center font-mono text-[11px] text-ghost tracking-label uppercase hover:text-accent transition-colors duration-[80ms] ease-linear"
       >
         &larr; ALL PROJECTS
       </Link>
 
-      {/* Header */}
-      <span className="block font-mono text-[11px] text-accent tracking-label font-medium mb-3">
-        {project.year}
-      </span>
-      <h1 className="font-mono text-[36px] md:text-[48px] font-bold text-primary leading-[1.0] tracking-tight mb-5">
-        {project.title}
-      </h1>
+      <div className="mb-8">
+        <div className="mb-4 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-1 border border-tag-border font-mono text-[10px] tracking-tag uppercase text-tag-text"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {project.tags.map((tag) => (
+        <h1 className="mb-3 font-mono text-[36px] md:text-[48px] font-bold text-primary leading-[1.05] tracking-tight">
+          {project.title}
+        </h1>
+
+        <div className="flex items-center gap-3">
           <span
-            key={tag}
-            className="font-mono text-[10px] tracking-tag uppercase px-2 py-1 border border-tag-border text-tag-text"
+            className={`px-2 py-0.5 border font-mono text-[10px] tracking-[0.1em] uppercase ${statusBadgeMap[project.status]}`}
           >
-            {tag}
+            {statusLabelMap[project.status]}
           </span>
-        ))}
-      </div>
-
-      <div className="border-t border-border mb-8" />
-
-      {/* Meta grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div>
-          <p className="font-mono text-[10px] text-dim tracking-label uppercase mb-1">
-            STATUS
-          </p>
-          <p className={`font-mono text-sm font-medium ${status.className}`}>
-            {status.label}
-          </p>
-        </div>
-        <div>
-          <p className="font-mono text-[10px] text-dim tracking-label uppercase mb-1">
-            YEAR
-          </p>
-          <p className="font-mono text-sm text-primary font-medium">
+          <span className="text-ghost">·</span>
+          <span className="font-mono text-[11px] text-ghost tracking-tag">
             {project.year}
-          </p>
-        </div>
-        <div>
-          <p className="font-mono text-[10px] text-dim tracking-label uppercase mb-1">
-            LINKS
-          </p>
-          <div className="flex flex-col gap-1">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-[12px] text-accent hover:underline underline-offset-2 transition-colors duration-[80ms]"
-              >
-                GitHub &nearr;
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-[12px] text-accent hover:underline underline-offset-2 transition-colors duration-[80ms]"
-              >
-                Live &nearr;
-              </a>
-            )}
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* Content body */}
-      <div className="font-sans text-[16px] text-secondary leading-[1.8] mb-12">
-        {project.longDescription}
-      </div>
+      <div className="mb-8 border-t border-border" />
 
-      <div
-        className="prose-custom"
-        dangerouslySetInnerHTML={{ __html: convertMarkdown(project.content) }}
+      <ProjectActionButtons
+        liveUrl={project.liveUrl}
+        githubUrl={project.githubUrl}
+        projectTitle={project.title}
       />
 
-      {/* Prev / Next nav */}
+      <ProjectMetaGrid status={project.status} year={project.year} stack={project.stack} />
+
+      <div className="mb-10 border-t border-border" />
+
+      <section className="mb-16 max-w-[640px]">
+        <h2 className="mb-3 font-mono text-[10px] text-ghost tracking-label uppercase">
+          OVERVIEW
+        </h2>
+        <div
+          className="prose-custom"
+          dangerouslySetInnerHTML={{ __html: convertMarkdown(project.content) }}
+        />
+
+        {project.screenshots?.length ? (
+          <div className="mt-10">
+            {project.screenshots.map((src, index) => (
+              <Image
+                key={src}
+                src={src}
+                alt={`${project.title} screenshot ${index + 1}`}
+                width={1280}
+                height={720}
+                className="my-8 w-full border border-border"
+              />
+            ))}
+          </div>
+        ) : null}
+      </section>
+
       {(prev || next) && (
-        <div className="mt-20">
-          <div className="border-t border-border mb-8" />
-          <div className="flex items-start justify-between">
+        <section>
+          <div className="mb-8 border-t border-border" />
+          <div className={`flex items-start ${navJustify}`}>
             {prev ? (
-              <Link href={`/projects/${prev.slug}`} className="group">
-                <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
+              <Link href={`/projects/${prev.slug}`} className="group max-w-[48%]">
+                <span className="mb-1 block font-mono text-[10px] text-ghost tracking-label uppercase">
                   PREVIOUS PROJECT
                 </span>
-                <span className="font-mono text-sm text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                <span className="line-clamp-1 font-mono text-[14px] text-primary transition-colors duration-[80ms] ease-linear group-hover:text-accent">
                   {prev.title}
                 </span>
               </Link>
-            ) : (
-              <span />
-            )}
+            ) : null}
+
             {next ? (
-              <Link
-                href={`/projects/${next.slug}`}
-                className="group text-right"
-              >
-                <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
+              <Link href={`/projects/${next.slug}`} className="group max-w-[48%] text-right">
+                <span className="mb-1 block font-mono text-[10px] text-ghost tracking-label uppercase">
                   NEXT PROJECT
                 </span>
-                <span className="font-mono text-sm text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                <span className="line-clamp-1 font-mono text-[14px] text-primary transition-colors duration-[80ms] ease-linear group-hover:text-accent">
                   {next.title}
                 </span>
               </Link>
-            ) : (
-              <span />
-            )}
+            ) : null}
           </div>
-        </div>
+        </section>
       )}
     </div>
   );
