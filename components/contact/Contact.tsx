@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { Mail, Phone } from "lucide-react";
 import {
@@ -134,6 +134,8 @@ export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section id="contact" ref={ref} className="min-h-[70vh] flex flex-col">
@@ -252,7 +254,7 @@ export default function Contact() {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-16"
         >
           {socials.map((s) => (
-            <SocialCard key={s.label} s={s} variants={socialCard} resolvedTheme={resolvedTheme} />
+            <SocialCard key={s.label} s={s} variants={socialCard} resolvedTheme={mounted ? resolvedTheme : undefined} />
           ))}
         </motion.div>
 
