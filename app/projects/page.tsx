@@ -3,7 +3,7 @@ import { getAllProjects } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
 import CursorRing from "@/components/CursorRing";
-import ProjectGrid from "@/components/projects/ProjectGrid";
+import ProjectsListContent from "@/components/projects/ProjectsListContent";
 
 export const metadata: Metadata = {
   title: "Projects | Rohit",
@@ -34,9 +34,9 @@ export default function ProjectsPage() {
         {/* Divider */}
         <div className="border-t border-border mt-12" />
 
-        {/* Content */}
+        {/* Content with sidebar */}
         <div className="mt-12">
-          <ProjectGrid projects={projects} />
+          <ProjectsListContent projects={projects} />
         </div>
       </PageWrapper>
     </>
