@@ -41,9 +41,9 @@ function convertMarkdown(md: string): string {
 }
 
 const statusDisplay: Record<string, { className: string; label: string }> = {
-  live: { className: "text-accent", label: "LIVE" },
-  wip: { className: "text-muted", label: "WIP" },
-  archived: { className: "text-dim", label: "ARCHIVED" },
+  live: { className: "text-status-live", label: "LIVE" },
+  wip: { className: "text-status-wip", label: "WIP" },
+  archived: { className: "text-status-archived", label: "ARCHIVED" },
 };
 
 export default function ProjectDetail({ project, prev, next }: ProjectDetailProps) {
@@ -88,29 +88,37 @@ export default function ProjectDetail({ project, prev, next }: ProjectDetailProp
 
       <div className="border-t border-border mb-6" />
 
-      {/* Meta row — inline */}
-      <div className="flex items-center gap-6 mb-8 flex-wrap">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[11px] text-accent hover:underline underline-offset-2 transition-colors duration-[80ms]"
-          >
-            GitHub &nearr;
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[11px] text-accent hover:underline underline-offset-2 transition-colors duration-[80ms]"
-          >
-            Live &nearr;
-          </a>
-        )}
-      </div>
+      {/* Action buttons */}
+      {(project.githubUrl || project.liveUrl) && (
+        <div className="flex items-center gap-4 mb-8 flex-wrap">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 h-10 px-5 bg-accent font-mono text-[11px] text-[#F0F0F0] tracking-label uppercase transition-colors duration-150 ease-out hover:bg-accent-hover"
+            >
+              SOURCE CODE
+              <span className="inline-block group-hover:translate-x-1 transition-transform duration-150 ease-out">
+                &rarr;
+              </span>
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 h-10 px-5 border border-border font-mono text-[11px] text-primary tracking-label uppercase transition-colors duration-150 ease-out hover:border-accent hover:text-accent"
+            >
+              VIEW LIVE
+              <span className="inline-block group-hover:translate-x-1 transition-transform duration-150 ease-out">
+                &rarr;
+              </span>
+            </a>
+          )}
+        </div>
+      )}
 
       {/* Content body */}
       <div className="font-sans text-[15px] text-secondary leading-[1.75] mb-8">

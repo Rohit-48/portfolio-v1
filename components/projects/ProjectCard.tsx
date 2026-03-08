@@ -12,9 +12,9 @@ interface ProjectCardProps {
 }
 
 const statusConfig: Record<string, { className: string; label: string }> = {
-  live: { className: "border-accent text-accent", label: "LIVE" },
-  wip: { className: "border-muted text-muted", label: "WIP" },
-  archived: { className: "border-border text-dim", label: "ARCHIVED" },
+  live: { className: "border-status-live-border text-status-live", label: "LIVE" },
+  wip: { className: "border-status-wip-border text-status-wip", label: "WIP" },
+  archived: { className: "border-status-archived-border text-status-archived", label: "ARCHIVED" },
 };
 
 const cardVariant = {

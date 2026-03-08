@@ -11,6 +11,12 @@ const projects = getFeaturedProjects().slice(0, 3);
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
+const statusColor: Record<string, string> = {
+  live: "text-status-live",
+  wip: "text-status-wip",
+  archived: "text-status-archived",
+};
+
 function WorkGridCard({
   project,
   index,
@@ -57,7 +63,7 @@ function WorkGridCard({
 
         {/* Right: status + arrow */}
         <div className="flex items-center gap-3 shrink-0">
-          <span className="font-mono text-[9px] tracking-[0.1em] text-dim">
+          <span className={`font-mono text-[9px] tracking-[0.1em] ${statusColor[project.status] ?? "text-dim"}`}>
             {statusLabel}
           </span>
           <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">

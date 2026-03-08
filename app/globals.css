@@ -28,6 +28,12 @@
   --accent-muted: #2563EB20;
   --tag-border: #C8C8C0;
   --tag-text: #555550;
+  --status-live: #16A34A;
+  --status-live-border: #16A34A;
+  --status-wip: #D97706;
+  --status-wip-border: #D97706;
+  --status-archived: #9CA3AF;
+  --status-archived-border: #9CA3AF;
 }
 
 /* ━━━ Dark mode ━━━ */
@@ -48,6 +54,12 @@
   --accent-muted: #1D4ED840;
   --tag-border: #2A2A2A;
   --tag-text: #888888;
+  --status-live: #22C55E;
+  --status-live-border: #22C55E;
+  --status-wip: #FBBF24;
+  --status-wip-border: #FBBF24;
+  --status-archived: #6B7280;
+  --status-archived-border: #6B7280;
 }
 
 /* ━━━ Tailwind v4 theme tokens ━━━ */
@@ -68,6 +80,12 @@
   --color-accent-muted: var(--accent-muted);
   --color-tag-border: var(--tag-border);
   --color-tag-text: var(--tag-text);
+  --color-status-live: var(--status-live);
+  --color-status-live-border: var(--status-live-border);
+  --color-status-wip: var(--status-wip);
+  --color-status-wip-border: var(--status-wip-border);
+  --color-status-archived: var(--status-archived);
+  --color-status-archived-border: var(--status-archived-border);
 
   --font-mono: "DM Mono", monospace;
   --font-sans: "Instrument Sans", sans-serif;
