@@ -39,7 +39,7 @@ export default function Navbar() {
         aria-label="Main navigation"
         data-floating-nav
         className={cn(
-          "pointer-events-auto mb-2 md:mb-4 h-11 md:h-11 px-3 md:px-4 flex items-center justify-between md:justify-start gap-1 md:gap-2 border transition-all duration-300 w-full md:w-auto",
+          "pointer-events-auto mb-2 md:mb-4 h-12 md:h-11 px-3 md:px-4 flex items-center justify-between md:justify-start gap-1.5 md:gap-2 border transition-all duration-300 w-full md:w-auto",
           "!rounded-full",
           scrolled
             ? "bg-bg/95 backdrop-blur-xl border-border shadow-lg shadow-black/10"
@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-mono text-[11px] md:text-[12px] text-primary tracking-nav font-medium px-1 md:px-4 shrink-0"
+          className="font-mono text-[12px] md:text-[12px] text-primary tracking-nav font-medium px-1.5 md:px-4 shrink-0"
         >
           R.
         </Link>
@@ -63,7 +63,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "font-mono text-[11px] md:text-[11px] tracking-nav uppercase px-2 md:px-4 py-1.5 !rounded-full transition-all duration-150",
+                "font-mono text-[12px] md:text-[11px] tracking-nav uppercase px-2.5 md:px-4 py-1.5 !rounded-full transition-all duration-150",
                 isActive(link.href)
                   ? "text-accent bg-accent-muted"
                   : "text-ghost hover:text-primary hover:bg-surface-hover"
