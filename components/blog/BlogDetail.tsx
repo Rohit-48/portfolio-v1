@@ -43,34 +43,17 @@ function convertMarkdown(md: string): string {
 
 export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
   return (
-    <div className="max-w-[720px] mx-auto">
+    <div>
       {/* Back link */}
       <Link
         href="/blog"
-        className="inline-flex items-center gap-2 font-mono text-[11px] text-dim tracking-label uppercase hover:text-accent transition-colors duration-[80ms] mb-12"
+        className="inline-flex items-center gap-2 font-mono text-[11px] text-dim tracking-label uppercase hover:text-accent transition-colors duration-[80ms] mb-8"
       >
         &larr; ALL POSTS
       </Link>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {post.tags.map((tag) => (
-          <span
-            key={tag}
-            className="font-mono text-[10px] tracking-tag uppercase px-2 py-1 border border-tag-border text-tag-text"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Title */}
-      <h1 className="font-mono text-[32px] md:text-[44px] font-bold text-primary leading-[1.05] tracking-tight mb-6">
-        {post.title}
-      </h1>
-
       {/* Meta row */}
-      <div className="flex items-center gap-6 mb-10">
+      <div className="flex items-center gap-4 mb-3">
         <span className="font-mono text-[11px] text-dim tracking-tag">
           {formatDate(post.date)}
         </span>
@@ -80,9 +63,26 @@ export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
         </span>
       </div>
 
-      <div className="border-t border-border mb-12" />
+      {/* Title */}
+      <h1 className="font-mono text-[28px] md:text-[36px] font-bold text-primary leading-[1.05] tracking-tight mb-4">
+        {post.title}
+      </h1>
 
-      {/* Article prose — narrower column for reading comfort */}
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {post.tags.map((tag) => (
+          <span
+            key={tag}
+            className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="border-t border-border mb-8" />
+
+      {/* Article prose */}
       <article
         className="prose-custom"
         dangerouslySetInnerHTML={{ __html: convertMarkdown(post.content) }}
@@ -90,15 +90,15 @@ export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
 
       {/* Footer nav */}
       {(prev || next) && (
-        <div className="mt-16">
-          <div className="border-t border-border mb-10" />
+        <div className="mt-12">
+          <div className="border-t border-border mb-6" />
           <div className="flex items-start justify-between">
             {prev ? (
               <Link href={`/blog/${prev.slug}`} className="group">
                 <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
-                  PREVIOUS POST
+                  PREVIOUS
                 </span>
-                <span className="font-mono text-sm text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                <span className="font-mono text-[13px] text-primary group-hover:text-accent transition-colors duration-[80ms]">
                   {prev.title}
                 </span>
               </Link>
@@ -111,9 +111,9 @@ export default function BlogDetail({ post, prev, next }: BlogDetailProps) {
                 className="group text-right"
               >
                 <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
-                  NEXT POST
+                  NEXT
                 </span>
-                <span className="font-mono text-sm text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                <span className="font-mono text-[13px] text-primary group-hover:text-accent transition-colors duration-[80ms]">
                   {next.title}
                 </span>
               </Link>

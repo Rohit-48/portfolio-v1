@@ -85,7 +85,7 @@ export function AnimatedThemeToggler({
   if (!mounted) {
     return (
       <div
-        className={cn("w-10 h-10 flex items-center justify-center border border-border2", className)}
+        className={cn("w-8 h-8 flex items-center justify-center rounded-full", className)}
         aria-hidden
       />
     );
@@ -96,13 +96,13 @@ export function AnimatedThemeToggler({
       ref={buttonRef}
       onClick={toggleTheme}
       className={cn(
-        "w-10 h-10 flex items-center justify-center border border-border2 bg-transparent text-ghost hover:text-primary hover:border-accent transition-colors duration-150",
+        "w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-ghost hover:text-primary hover:bg-surface-hover transition-colors duration-150",
         className
       )}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       {...props}
     >
-      {isDark ? <Sun size={16} /> : <Moon size={16} />}
+      {isDark ? <Sun size={14} /> : <Moon size={14} />}
     </button>
   );
 }

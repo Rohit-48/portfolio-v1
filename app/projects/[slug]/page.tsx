@@ -7,9 +7,6 @@ import {
 } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import ParticleBackground from "@/components/background/ParticleBackground";
-import PatternOverlay from "@/components/background/PatternOverlay";
-import CursorRing from "@/components/CursorRing";
 import ProjectDetail from "@/components/projects/ProjectDetail";
 
 interface ProjectPageProps {
@@ -51,9 +48,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <ParticleBackground />
-      <PatternOverlay />
-      <CursorRing />
       <Navbar />
       <PageWrapper>
         <ProjectDetail project={project} prev={prev} next={next} />
