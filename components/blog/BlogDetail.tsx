@@ -119,9 +119,6 @@ export default function BlogDetail({
 
   return (
     <div className="flex gap-12 lg:gap-16 w-full">
-      {/* Sticky TOC — desktop only */}
-      <BlogTOC headings={headings} />
-
       <article
         ref={articleRef}
         className="min-w-0 flex-1 max-w-[680px] mx-auto lg:mx-0"
@@ -229,6 +226,9 @@ export default function BlogDetail({
           </div>
         )}
       </article>
+
+      {/* Sticky TOC — desktop only, right side */}
+      <BlogTOC headings={headings} />
     </div>
   );
 }
