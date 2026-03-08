@@ -7,7 +7,7 @@ import ProjectGrid from "@/components/projects/ProjectGrid";
 export const metadata: Metadata = {
   title: "Projects | Rohit",
   description:
-    "Things I've built — web interfaces, systems tools, and everything in between.",
+    "Things I've built: web interfaces, systems tools, and everything in between.",
 };
 
 export default function ProjectsPage() {
@@ -25,7 +25,7 @@ export default function ProjectsPage() {
           Projects
         </h1>
         <p className="font-sans text-[13px] text-secondary leading-relaxed mt-3 max-w-md">
-          Things I&apos;ve built — web interfaces, systems tools, and everything
+          Things I&apos;ve built: web interfaces, systems tools, and everything
           in between.
         </p>
 

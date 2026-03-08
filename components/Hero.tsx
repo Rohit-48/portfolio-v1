@@ -35,7 +35,7 @@ export default function Hero() {
             <motion.div {...fade(0.1)} className="flex items-center gap-4 mb-6">
               <span className="w-8 h-px bg-accent" />
               <span className="font-mono text-[10px] text-accent tracking-label font-medium uppercase">
-                PORTFOLIO — {new Date().getFullYear()}
+                PORTFOLIO / {new Date().getFullYear()}
               </span>
             </motion.div>
 

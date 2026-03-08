@@ -102,7 +102,7 @@ export default function About() {
                                           Computer Science student and Software
                                           Developer. I build full-stack
                                           applications with modern JavaScript
-                                          frameworks and backend systems —
+                                          frameworks and backend systems,
                                           aiming for clean architecture,
                                           scalable design, and great developer
                                           experience.
