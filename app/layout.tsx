@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Mono, Instrument_Sans, Space_Grotesk, Syne } from "next/font/google";
+import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Providers from "@/components/Providers";
 import "./globals.css";
 
@@ -17,19 +17,6 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-syne",
-  display: "swap",
-});
 
 const BASE_URL = "https://rohitxyz.me";
 
@@ -104,7 +91,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmMono.variable} ${instrumentSans.variable} ${spaceGrotesk.variable} ${syne.variable}`}
+      className={`${dmMono.variable} ${instrumentSans.variable}`}
       suppressHydrationWarning
     >
       <body className="antialiased" suppressHydrationWarning>

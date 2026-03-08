@@ -196,6 +196,7 @@ body {
   margin-top: 56px;
   margin-bottom: 20px;
   line-height: 1.2;
+  scroll-margin-top: 6rem;
 }
 
 .prose-custom h3 {
@@ -206,6 +207,7 @@ body {
   margin-top: 40px;
   margin-bottom: 16px;
   line-height: 1.3;
+  scroll-margin-top: 6rem;
 }
 
 .prose-custom p {
@@ -306,138 +308,8 @@ body {
   margin: 40px 0;
 }
 
-/* ━━━ Blog section — brutalist dark theme ━━━ */
-.blog-section {
-  --blog-bg: #0a0a0a;
-  --blog-accent: #FFD000;
-  --blog-accent-hover: #ffe033;
-  --blog-text: #ffffff;
-  --blog-text-muted: #a3a3a3;
-  --blog-border: #262626;
-  background-color: var(--blog-bg);
-  color: var(--blog-text);
-  font-family: var(--font-space-grotesk), var(--font-syne), system-ui, sans-serif;
-}
-
-.blog-section .blog-heading {
-  font-family: var(--font-space-grotesk), var(--font-syne), sans-serif;
-}
-
-.blog-section .blog-body {
-  font-family: var(--font-syne), var(--font-space-grotesk), sans-serif;
-}
-
-/* Blog prose — dark themed, readable */
-.blog-section .prose-blog h2 {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--blog-text);
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-  scroll-margin-top: 6rem;
-}
-
-.blog-section .prose-blog h3 {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--blog-text);
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.35;
-  scroll-margin-top: 6rem;
-}
-
-.blog-section .prose-blog p {
-  font-size: 1rem;
-  color: var(--blog-text-muted);
-  line-height: 1.8;
-  margin-bottom: 1.25rem;
-}
-
-.blog-section .prose-blog strong {
-  color: var(--blog-text);
-  font-weight: 600;
-}
-
-.blog-section .prose-blog a {
-  color: var(--blog-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 80ms linear;
-}
-
-.blog-section .prose-blog a:hover {
-  color: var(--blog-accent-hover);
-}
-
-.blog-section .prose-blog code {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  background: #1a1a1a;
-  color: var(--blog-accent);
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--blog-border);
-}
-
-.blog-section .prose-blog pre {
-  background: #0d0d0d;
-  border: 1px solid var(--blog-border);
-  padding: 1rem 1.25rem;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  line-height: 1.6;
-}
-
-.blog-section .prose-blog pre code {
-  background: transparent;
-  padding: 0;
-  font-size: 0.8125rem;
-  color: #e5e5e5;
-  border: none;
-}
-
-.blog-section .prose-blog blockquote {
-  border-left: 3px solid var(--blog-accent);
-  padding-left: 1.25rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: var(--blog-text-muted);
-}
-
-.blog-section .prose-blog ul,
-.blog-section .prose-blog ol {
-  color: var(--blog-text-muted);
-  font-size: 0.9375rem;
-  line-height: 1.8;
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.blog-section .prose-blog li {
-  margin-bottom: 0.5rem;
-}
-
-.blog-section .prose-blog li::marker {
-  color: var(--blog-accent);
-}
-
-.blog-section .prose-blog hr {
-  border: none;
-  border-top: 1px solid var(--blog-border);
-  margin: 2rem 0;
-}
-
-.blog-section .prose-blog img {
-  width: 100%;
-  border: 1px solid var(--blog-border);
-  margin: 2rem 0;
-}
-
-/* Highlight.js dark theme overrides for blog */
-.blog-section .hljs {
-  background: #0d0d0d !important;
-  color: #e5e5e5 !important;
+/* ━━━ Highlight.js theme overrides for code blocks ━━━ */
+.prose-custom .hljs {
+  background: var(--surface) !important;
+  color: var(--secondary) !important;
 }

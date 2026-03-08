@@ -29,16 +29,16 @@ export default function BlogTOC({ headings }: BlogTOCProps) {
       className="hidden lg:block w-44 xl:w-52 shrink-0"
     >
       <div className="sticky top-32">
-        <span className="blog-body block text-[10px] text-[#a3a3a3] tracking-[0.1em] uppercase mb-4">
-          On this page
+        <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-4">
+          ON THIS PAGE
         </span>
-        <ul className="space-y-2 border-l border-[#262626] pl-4">
+        <ul className="space-y-2 border-l border-border pl-4">
           {headings.map((h) => (
             <li key={h.id} className={h.level === 3 ? "pl-3" : ""}>
               <a
                 href={`#${h.id}`}
                 onClick={(e) => handleClick(e, h.id)}
-                className="blog-body block text-[11px] text-[#a3a3a3] hover:text-[#FFD000] transition-colors truncate"
+                className="block font-mono text-[11px] text-ghost hover:text-accent transition-colors duration-[80ms] truncate"
               >
                 {h.text}
               </a>

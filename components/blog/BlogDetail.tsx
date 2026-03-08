@@ -54,7 +54,7 @@ function convertMarkdownWithHeadings(
     .replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m}</ul>`);
 
   // Split by double newlines, process blocks, restore code blocks
-  let html = processed
+  const html = processed
     .split(/\n\n+/)
     .map((block) => {
       const t = block.trim();
@@ -87,11 +87,7 @@ function ShareButton({ title, slug }: { title: string; slug: string }) {
   const url = typeof window !== "undefined" ? `${window.location.origin}/blog/${slug}` : "";
   const share = useCallback(() => {
     if (navigator.share) {
-      navigator.share({
-        title,
-        url,
-        text: title,
-      }).catch(() => {});
+      navigator.share({ title, url, text: title }).catch(() => {});
     } else {
       navigator.clipboard?.writeText(url).then(() => {});
     }
@@ -100,10 +96,10 @@ function ShareButton({ title, slug }: { title: string; slug: string }) {
   return (
     <button
       onClick={share}
-      className="blog-body text-[11px] text-[#a3a3a3] tracking-[0.08em] uppercase hover:text-[#FFD000] transition-colors border border-[#262626] hover:border-[#FFD000] px-3 py-1.5"
+      className="font-mono text-[11px] text-dim tracking-tag uppercase hover:text-accent transition-colors duration-[80ms] border border-border hover:border-accent/40 px-3 py-1.5"
       type="button"
     >
-      Share
+      SHARE
     </button>
   );
 }
@@ -122,119 +118,117 @@ export default function BlogDetail({
   const articleRef = useHighlighting();
 
   return (
-    <div className="blog-section min-h-screen">
-      <div className="flex gap-12 lg:gap-16 w-full">
-        {/* Sticky TOC — desktop only, hidden on mobile */}
-        <BlogTOC headings={headings} />
+    <div className="flex gap-12 lg:gap-16 w-full">
+      {/* Sticky TOC — desktop only */}
+      <BlogTOC headings={headings} />
 
-        <article
-          ref={articleRef}
-          className="min-w-0 flex-1 max-w-[680px] mx-auto lg:mx-0"
+      <article
+        ref={articleRef}
+        className="min-w-0 flex-1 max-w-[680px] mx-auto lg:mx-0"
+      >
+        {/* Back link */}
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 font-mono text-[11px] text-dim tracking-label uppercase hover:text-accent transition-colors duration-[80ms] mb-8"
         >
-          {/* Breadcrumb */}
-          <Link
-            href="/blog"
-            className="blog-body inline-flex items-center gap-2 text-[11px] text-[#a3a3a3] tracking-[0.1em] uppercase hover:text-[#FFD000] transition-colors mb-8"
-          >
-            &larr; All posts
-          </Link>
+          &larr; ALL POSTS
+        </Link>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="blog-body text-[10px] tracking-[0.08em] uppercase px-2 py-1 border border-[#FFD000] text-[#FFD000]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        {/* Meta row */}
+        <div className="flex items-center gap-4 mb-3">
+          <span className="font-mono text-[11px] text-dim tracking-tag">
+            {formatDate(post.date)}
+          </span>
+          <span className="font-mono text-[11px] text-border">&middot;</span>
+          <span className="font-mono text-[11px] text-accent tracking-tag">
+            {post.readTime} MIN READ
+          </span>
+          <span className="flex-1" />
+          <ShareButton title={post.title} slug={post.slug} />
+        </div>
 
-          {/* Title */}
-          <h1 className="blog-heading text-[28px] sm:text-[36px] md:text-[44px] font-bold text-white leading-[1.1] tracking-tight mb-4">
-            {post.title}
-          </h1>
+        {/* Title */}
+        <h1 className="font-mono text-[28px] md:text-[36px] font-bold text-primary leading-[1.05] tracking-tight mb-4">
+          {post.title}
+        </h1>
 
-          {/* Meta row — date, reading time, share */}
-          <div className="flex flex-wrap items-center gap-4 mb-10">
-            <span className="blog-body text-[12px] text-[#a3a3a3]">
-              {formatDate(post.date)}
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text"
+            >
+              {tag}
             </span>
-            <span className="text-[#404040]">·</span>
-            <span className="blog-body text-[12px] text-[#FFD000]">
-              {post.readTime} min read
+          ))}
+        </div>
+
+        <div className="border-t border-border mb-8" />
+
+        {/* Article prose */}
+        <div
+          className="prose-custom"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+
+        {/* Related posts */}
+        {relatedPosts.length > 0 && (
+          <section className="mt-12 pt-8 border-t border-border">
+            <span className="block font-mono text-[11px] text-accent tracking-label uppercase mb-4">
+              RELATED
             </span>
-            <span className="flex-1" />
-            <ShareButton title={post.title} slug={post.slug} />
-          </div>
-
-          <div className="border-t border-[#262626] mb-12" />
-
-          {/* Article prose */}
-          <div
-            className="prose-blog"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-
-          {/* More posts like this */}
-          {relatedPosts.length > 0 && (
-            <section className="mt-16 pt-12 border-t border-[#262626]">
-              <h2 className="blog-heading text-[18px] font-semibold text-white mb-6">
-                More posts like this
-              </h2>
-              <ul className="space-y-4">
-                {relatedPosts.map((p) => (
-                  <li key={p.slug}>
-                    <Link
-                      href={`/blog/${p.slug}`}
-                      className="blog-body text-[15px] text-[#a3a3a3] hover:text-[#FFD000] transition-colors"
-                    >
-                      {p.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {/* Prev/Next footer nav */}
-          {(prev || next) && (
-            <div className="mt-16">
-              <div className="border-t border-[#262626] mb-10" />
-              <div className="flex items-start justify-between gap-6">
-                {prev ? (
-                  <Link href={`/blog/${prev.slug}`} className="group min-w-0">
-                    <span className="blog-body block text-[10px] text-[#a3a3a3] tracking-[0.1em] uppercase mb-1">
-                      Previous
-                    </span>
-                    <span className="blog-body text-sm text-white group-hover:text-[#FFD000] transition-colors line-clamp-2">
-                      {prev.title}
-                    </span>
-                  </Link>
-                ) : (
-                  <span />
-                )}
-                {next ? (
+            <ul className="space-y-3">
+              {relatedPosts.map((p) => (
+                <li key={p.slug}>
                   <Link
-                    href={`/blog/${next.slug}`}
-                    className="group text-right min-w-0"
+                    href={`/blog/${p.slug}`}
+                    className="font-mono text-[14px] text-secondary hover:text-accent transition-colors duration-[80ms]"
                   >
-                    <span className="blog-body block text-[10px] text-[#a3a3a3] tracking-[0.1em] uppercase mb-1">
-                      Next
-                    </span>
-                    <span className="blog-body text-sm text-white group-hover:text-[#FFD000] transition-colors line-clamp-2">
-                      {next.title}
-                    </span>
+                    {p.title}
                   </Link>
-                ) : (
-                  <span />
-                )}
-              </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Prev/Next footer nav */}
+        {(prev || next) && (
+          <div className="mt-12">
+            <div className="border-t border-border mb-6" />
+            <div className="flex items-start justify-between">
+              {prev ? (
+                <Link href={`/blog/${prev.slug}`} className="group">
+                  <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
+                    PREVIOUS
+                  </span>
+                  <span className="font-mono text-[13px] text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                    {prev.title}
+                  </span>
+                </Link>
+              ) : (
+                <span />
+              )}
+              {next ? (
+                <Link
+                  href={`/blog/${next.slug}`}
+                  className="group text-right"
+                >
+                  <span className="block font-mono text-[10px] text-dim tracking-label uppercase mb-1">
+                    NEXT
+                  </span>
+                  <span className="font-mono text-[13px] text-primary group-hover:text-accent transition-colors duration-[80ms]">
+                    {next.title}
+                  </span>
+                </Link>
+              ) : (
+                <span />
+              )}
             </div>
-          )}
-        </article>
-      </div>
+          </div>
+        )}
+      </article>
     </div>
   );
 }

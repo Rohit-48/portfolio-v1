@@ -24,7 +24,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
       variants={stagger}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      className="flex flex-col gap-2"
     >
       {posts.map((post) => (
         <BlogCard key={post.slug} post={post} />

@@ -16,23 +16,32 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <div className="blog-section min-h-screen">
-        <PageWrapper className="pt-32 pb-16">
-          {/* Bold heading */}
-          <h1 className="blog-heading text-[48px] sm:text-[64px] md:text-[80px] font-bold text-white leading-[0.95] tracking-tighter">
-            BLOG
-          </h1>
-          <p className="blog-body text-[14px] text-[#a3a3a3] mt-3 max-w-md tracking-wide">
-            Thoughts on web development, systems programming, and building things
-            that last.
-          </p>
+      <PageWrapper>
+        {/* Section label */}
+        <span className="block font-mono text-[11px] text-accent tracking-label font-medium uppercase">
+          WRITING
+        </span>
+        <h1 className="font-mono text-[28px] md:text-[32px] font-bold text-primary leading-[1.0] tracking-tight mt-2">
+          Blog
+        </h1>
+        <p className="font-sans text-[13px] text-secondary leading-relaxed mt-3 max-w-md">
+          Thoughts on web development, systems programming, and building things
+          that last.
+        </p>
 
-          {/* Content — no excessive bottom whitespace */}
-          <div className="mt-10 md:mt-12">
-            <BlogGrid posts={posts} />
-          </div>
-        </PageWrapper>
-      </div>
+        {/* Divider */}
+        <div className="border-t border-border mt-6" />
+
+        {/* Count */}
+        <div className="flex items-center justify-between mt-4 mb-4">
+          <span className="font-mono text-[10px] text-dim tracking-tag">
+            {posts.length} POST{posts.length !== 1 ? "S" : ""}
+          </span>
+        </div>
+
+        {/* Content */}
+        <BlogGrid posts={posts} />
+      </PageWrapper>
     </>
   );
 }
