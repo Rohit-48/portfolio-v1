@@ -25,7 +25,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       )}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       whileTap={{ scale: 0.92 }}
-      transition={{ duration: 0.15 }}
+      transition={{ duration: 1.5 }}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
@@ -33,7 +33,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
           initial={{ rotate: -90, opacity: 0 }}
           animate={{ rotate: 0, opacity: 1 }}
           exit={{ rotate: 90, opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
           className="inline-flex"
         >
           {isDark ? <Sun size={16} /> : <Moon size={16} />}
