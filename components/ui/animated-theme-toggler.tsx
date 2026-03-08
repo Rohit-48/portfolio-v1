@@ -16,10 +16,27 @@ export function AnimatedThemeToggler({
   ...props
 }: AnimatedThemeTogglerProps) {
   const { setTheme, resolvedTheme } = useTheme();
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const isDark = resolvedTheme === "dark";
+  const [isDark, setIsDark] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const updateTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, [mounted, resolvedTheme]);
 
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current || !mounted) return;
@@ -27,6 +44,7 @@ export function AnimatedThemeToggler({
 
     const applyTheme = () => {
       flushSync(() => {
+        document.documentElement.classList.toggle("dark", newTheme);
         setTheme(newTheme ? "dark" : "light");
       });
     };
@@ -67,10 +85,7 @@ export function AnimatedThemeToggler({
   if (!mounted) {
     return (
       <div
-        className={cn(
-          "w-10 h-10 flex items-center justify-center border border-border2 bg-transparent",
-          className
-        )}
+        className={cn("w-8 h-8 flex items-center justify-center rounded-full", className)}
         aria-hidden
       />
     );
@@ -81,13 +96,13 @@ export function AnimatedThemeToggler({
       ref={buttonRef}
       onClick={toggleTheme}
       className={cn(
-        "w-10 h-10 flex items-center justify-center border border-border2 bg-transparent text-ghost hover:text-primary hover:border-accent transition-colors duration-150",
+        "w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-ghost hover:text-primary hover:bg-surface-hover transition-colors duration-150",
         className
       )}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       {...props}
     >
-      {isDark ? <Sun size={16} /> : <Moon size={16} />}
+      {isDark ? <Sun size={14} /> : <Moon size={14} />}
     </button>
   );
 }

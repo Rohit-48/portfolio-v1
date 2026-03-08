@@ -7,7 +7,7 @@ import BlogCard from "./BlogCard";
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.09 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 interface BlogGridProps {
@@ -19,16 +19,26 @@ export default function BlogGrid({ posts }: BlogGridProps) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <motion.div
-      ref={ref}
-      variants={stagger}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className="flex flex-col gap-5"
-    >
-      {posts.map((post) => (
-        <BlogCard key={post.slug} post={post} />
-      ))}
-    </motion.div>
+    <div>
+      {/* Count */}
+      <div className="flex items-center justify-between mb-4">
+        <span className="font-mono text-[10px] text-dim tracking-tag">
+          {posts.length} POST{posts.length !== 1 ? "S" : ""}
+        </span>
+      </div>
+
+      {/* Blog cards */}
+      <motion.div
+        ref={ref}
+        variants={stagger}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="flex flex-col gap-2"
+      >
+        {posts.map((post) => (
+          <BlogCard key={post.slug} post={post} />
+        ))}
+      </motion.div>
+    </div>
   );
 }

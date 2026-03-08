@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import CursorRing from "@/components/CursorRing";
 import BlogDetail from "@/components/blog/BlogDetail";
 
 interface BlogPostPageProps {
@@ -45,7 +44,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <CursorRing />
       <Navbar />
       <PageWrapper>
         <BlogDetail post={post} prev={prev} next={next} />

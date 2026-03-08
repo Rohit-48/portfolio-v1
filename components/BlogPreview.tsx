@@ -11,18 +11,18 @@ import type { Variants } from "framer-motion";
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 const headerVariant = (delay: number) => ({
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay, ease } },
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, delay, ease } },
 });
 
 const cardVariant: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease } },
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.18 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.12 } },
 };
 
 interface BlogPreviewProps {
@@ -42,25 +42,25 @@ function BlogPreviewCard({
     <motion.div variants={variants}>
       <Link
         href={`/blog/${post.slug}`}
-        className="group relative flex items-center justify-between gap-4 px-6 py-5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
+        className="group relative flex items-center justify-between gap-4 px-4 py-3.5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
         onMouseEnter={(e) => setPreview?.(post, e.clientX, e.clientY)}
         onMouseMove={(e) => setPreview?.(post, e.clientX, e.clientY)}
         onMouseLeave={() => setPreview?.(null, 0, 0)}
       >
         <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
 
-        <div className="flex items-center gap-4 min-w-0">
-          <span className="font-mono text-[11px] text-dim tracking-[0.05em] shrink-0 w-16">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="font-mono text-[10px] text-dim tracking-[0.05em] shrink-0 w-14">
             {formatDateShort(post.date)}
           </span>
-          <h3 className="font-mono text-[16px] md:text-[18px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
+          <h3 className="font-mono text-[14px] md:text-[16px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
             {post.title}
           </h3>
-          <div className="hidden md:flex items-center gap-1.5 shrink-0">
-            {post.tags.map((t) => (
+          <div className="hidden md:flex items-center gap-1 shrink-0">
+            {post.tags.slice(0, 3).map((t) => (
               <span
                 key={t}
-                className="font-mono text-[9px] tracking-tag uppercase px-2 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
+                className="font-mono text-[8px] tracking-tag uppercase px-1.5 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
               >
                 {t}
               </span>
@@ -68,8 +68,8 @@ function BlogPreviewCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-4 shrink-0">
-          <span className="font-mono text-[10px] text-accent tracking-tag">
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="font-mono text-[9px] text-accent tracking-tag">
             {post.readTime} MIN
           </span>
           <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
@@ -86,39 +86,39 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="writing" className="py-14">
-      <div className="px-8 md:px-16 xl:px-[340px]" ref={ref}>
+    <section id="writing" className="py-10">
+      <div className="max-w-[800px] mx-auto px-6" ref={ref}>
         {/* Header */}
         <motion.span
           variants={headerVariant(0)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="block font-mono text-[11px] text-accent tracking-label font-medium uppercase mb-3"
+          className="block font-mono text-[11px] text-accent tracking-label font-medium uppercase mb-2"
         >
           WRITING
         </motion.span>
         <motion.h2
-          variants={headerVariant(0.08)}
+          variants={headerVariant(0.06)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="font-mono text-[40px] md:text-[48px] font-bold text-primary leading-[1.0] tracking-tight"
+          className="font-mono text-[28px] md:text-[32px] font-bold text-primary leading-[1.0] tracking-tight"
         >
           Blog
         </motion.h2>
         <motion.p
-          variants={headerVariant(0.14)}
+          variants={headerVariant(0.1)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="font-sans text-[15px] text-secondary mt-4 max-w-md"
+          className="font-sans text-[14px] text-secondary mt-3 max-w-md"
         >
           Thoughts on systems, web engineering, and the tools I use.
         </motion.p>
 
         <motion.div
-          variants={headerVariant(0.18)}
+          variants={headerVariant(0.14)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="border-t border-border mt-10 mb-8"
+          className="border-t border-border mt-6 mb-4"
         />
 
         {/* Cards */}
@@ -126,7 +126,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
           variants={stagger}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex flex-col gap-3"
+          className="flex flex-col gap-2"
         >
           {posts.map((post) => (
             <BlogPreviewCard key={post.slug} post={post} variants={cardVariant} />
@@ -135,10 +135,10 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
 
         {/* View all */}
         <motion.div
-          variants={headerVariant(0.45)}
+          variants={headerVariant(0.35)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-8"
+          className="mt-5"
         >
           <Link
             href="/blog"

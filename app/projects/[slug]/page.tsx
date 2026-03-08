@@ -7,9 +7,7 @@ import {
 } from "@/lib/projects";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
-import CursorRing from "@/components/CursorRing";
 import ProjectDetail from "@/components/projects/ProjectDetail";
-import ProjectsSidebar from "@/components/projects/ProjectsSidebar";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -50,15 +48,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <CursorRing />
       <Navbar />
-      <PageWrapper className="pt-32 pb-40">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          <ProjectsSidebar tags={project.tags} />
-          <div className="min-w-0 flex-1 max-w-3xl">
-            <ProjectDetail project={project} prev={prev} next={next} />
-          </div>
-        </div>
+      <PageWrapper>
+        <ProjectDetail project={project} prev={prev} next={next} />
       </PageWrapper>
     </>
   );
