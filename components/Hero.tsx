@@ -110,7 +110,7 @@ export default function Hero() {
             {...fade(0.22)}
             className="mt-4 lg:mt-0 shrink-0"
           >
-            <div className="w-64 sm:w-72 lg:w-[280px] lg:h-[360px] border-2 border-white/20 bg-surface overflow-hidden relative group shadow-xl shadow-black/20 hover:border-white/35 transition-[border-color] duration-300">
+            <div className="w-64 sm:w-72 lg:w-[280px] lg:h-[360px] border-2 border-border dark:border-white bg-surface overflow-hidden relative group shadow-xl shadow-black/20 hover:border-border2 dark:hover:border-white/80 transition-[border-color] duration-300">
               <div className="absolute inset-0">
                 <Image
                   src="/avatar.png"

@@ -36,7 +36,7 @@ export default function Nav() {
         aria-label="Main navigation"
         data-floating-nav
         className={cn(
-          "pointer-events-auto mb-2 md:mb-4 h-12 md:h-11 px-3 md:px-4 flex items-center justify-between md:justify-start gap-1.5 md:gap-2 border transition-all duration-300 w-full md:w-auto",
+          "pointer-events-auto mb-2 md:mb-5 h-12 md:h-14 px-3 md:px-6 flex items-center justify-between md:justify-start gap-1.5 md:gap-3 border transition-all duration-300 w-full md:w-auto",
           "!rounded-full",
           scrolled
             ? "bg-bg/95 backdrop-blur-xl border-border shadow-lg shadow-black/10"
@@ -46,22 +46,22 @@ export default function Nav() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-mono text-[12px] md:text-[12px] text-primary tracking-nav font-medium px-1.5 md:px-4 shrink-0"
+          className="font-mono text-[12px] md:text-[13px] text-primary tracking-nav font-medium px-1.5 md:px-4 shrink-0"
         >
           R.
         </Link>
 
-        <div className="w-px h-4 bg-border/50 shrink-0" />
+        <div className="w-px h-5 bg-border/50 shrink-0" />
 
         {/* Nav links — always visible */}
-        <div className="flex items-center flex-1 md:flex-none justify-around md:justify-start gap-0 md:gap-1">
+        <div className="flex items-center flex-1 md:flex-none justify-around md:justify-start gap-0 md:gap-1.5">
           {navLinks.map((link) =>
             link.scroll ? (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleScrollClick(e, link.href)}
-                className="font-mono text-[12px] md:text-[11px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-4 py-1.5 !rounded-full transition-all duration-150"
+                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[12px] md:text-[11px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-4 py-1.5 !rounded-full transition-all duration-150"
+                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
               >
                 {link.label}
               </Link>
@@ -77,10 +77,10 @@ export default function Nav() {
           )}
         </div>
 
-        <div className="w-px h-4 bg-border/50 shrink-0" />
+        <div className="w-px h-5 bg-border/50 shrink-0" />
 
         {/* Theme toggle */}
-        <div className="px-1 md:px-1.5 shrink-0">
+        <div className="px-1 md:px-2 shrink-0">
           <AnimatedThemeToggler />
         </div>
       </motion.nav>
