@@ -114,7 +114,7 @@ export default function ProjectDetail({ project, prev, next }: ProjectDetailProp
 
       {/* Content body */}
       <div className="font-sans text-[15px] text-secondary leading-[1.75] mb-8">
-        {project.longDescription}
+        {project.description}
       </div>
 
       <div
