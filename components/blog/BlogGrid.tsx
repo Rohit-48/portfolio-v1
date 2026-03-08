@@ -16,29 +16,19 @@ interface BlogGridProps {
 
 export default function BlogGrid({ posts }: BlogGridProps) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
-    <div>
-      {/* Count */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="font-mono text-[10px] text-dim tracking-tag">
-          {posts.length} POST{posts.length !== 1 ? "S" : ""}
-        </span>
-      </div>
-
-      {/* Blog cards */}
-      <motion.div
-        ref={ref}
-        variants={stagger}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="flex flex-col gap-2"
-      >
-        {posts.map((post) => (
-          <BlogCard key={post.slug} post={post} />
-        ))}
-      </motion.div>
-    </div>
+    <motion.div
+      ref={ref}
+      variants={stagger}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+    >
+      {posts.map((post) => (
+        <BlogCard key={post.slug} post={post} />
+      ))}
+    </motion.div>
   );
 }

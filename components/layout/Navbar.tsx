@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { label: "HOME", href: "/" },
   { label: "PROJECTS", href: "/projects" },
-  { label: "BLOGS", href: "/blog" },
+  { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/#contact" },
 ];
 
@@ -29,6 +29,8 @@ export default function Navbar() {
     if (href.startsWith("/#")) return false;
     return pathname.startsWith(href);
   };
+
+  const isBlog = pathname === "/blog" || pathname.startsWith("/blog/");
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none px-3 md:px-0">
@@ -65,7 +67,9 @@ export default function Navbar() {
               className={cn(
                 "font-mono text-[12px] md:text-[11px] tracking-nav uppercase px-2.5 md:px-4 py-1.5 !rounded-full transition-all duration-150",
                 isActive(link.href)
-                  ? "text-accent bg-accent-muted"
+                  ? isBlog && link.href === "/blog"
+                    ? "text-[#FFD000] bg-[#FFD000]/10"
+                    : "text-accent bg-accent-muted"
                   : "text-ghost hover:text-primary hover:bg-surface-hover"
               )}
             >

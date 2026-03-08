@@ -42,11 +42,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       ? { slug: allPosts[idx + 1].slug, title: allPosts[idx + 1].title }
       : undefined;
 
+  // Related posts: same tags, exclude current, max 3
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== slug)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      score: p.tags.filter((t) => post.tags.includes(t)).length,
+    }))
+    .filter((p) => p.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ slug, title }) => ({ slug, title }));
+
   return (
     <>
       <Navbar />
-      <PageWrapper>
-        <BlogDetail post={post} prev={prev} next={next} />
+      <PageWrapper className="pt-32 pb-16">
+        <BlogDetail
+          post={post}
+          prev={prev}
+          next={next}
+          relatedPosts={relatedPosts}
+        />
       </PageWrapper>
     </>
   );
