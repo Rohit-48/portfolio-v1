@@ -9,6 +9,7 @@ export const projects: Project[] = [
     status: "live",
     year: 2026,
     githubUrl: "https://github.com/Rohit-48/My-Crate",
+    liveUrl: "https://logs.rohitxyz.me",
     featured: true,
     stack: ["Rust", "Cargo", "Astro", "MD", "Hono.js", "TypeScript", "Tailwind CSS", "SQLite"],
     content: `## What It Is
