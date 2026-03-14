@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { EncryptedText } from "@/components/ui/encrypted-text";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -45,13 +46,23 @@ export default function Hero() {
                 {...slideLeft(0.18)}
                 className="block font-mono text-[48px] md:text-[60px] lg:text-[72px] font-bold text-primary leading-[0.9] tracking-tight"
               >
-                ROHIT
+                <EncryptedText
+                  text="ROHIT"
+                  revealDelayMs={60}
+                  flipDelayMs={40}
+                  encryptedClassName="text-accent/40"
+                />
               </motion.span>
               <motion.span
                 {...slideLeft(0.26)}
                 className="block font-mono text-[48px] md:text-[60px] lg:text-[72px] font-bold text-primary leading-[0.9] tracking-tight"
               >
-                BUILDS<span className="text-accent">.</span>
+                <EncryptedText
+                  text="BUILDS"
+                  revealDelayMs={60}
+                  flipDelayMs={40}
+                  encryptedClassName="text-accent/40"
+                /><span className="text-accent">.</span>
               </motion.span>
             </h1>
 
