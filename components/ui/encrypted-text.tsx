@@ -57,18 +57,24 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
 
+  // Start false — render plain text on server to avoid hydration mismatch
+  const [mounted, setMounted] = useState(false);
   const [revealCount, setRevealCount] = useState<number>(0);
   const animationFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const lastFlipTimeRef = useRef<number>(0);
-  const scrambleCharsRef = useRef<string[]>(
-    text ? generateGibberishPreservingSpaces(text, charset).split("") : [],
-  );
+  // Initialize empty — only filled after mount to avoid SSR randomness
+  const scrambleCharsRef = useRef<string[]>([]);
+
+  // Mark as mounted on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!mounted || !isInView) return;
 
-    // Reset state for a fresh animation whenever dependencies change
+    // Generate initial scramble only on the client
     const initial = text
       ? generateGibberishPreservingSpaces(text, charset)
       : "";
@@ -122,9 +128,18 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isInView, text, revealDelayMs, charset, flipDelayMs]);
+  }, [mounted, isInView, text, revealDelayMs, charset, flipDelayMs]);
 
   if (!text) return null;
+
+  // Before mount, render the plain text to match server HTML exactly
+  if (!mounted) {
+    return (
+      <span ref={ref} className={cn(className)} aria-label={text} role="text">
+        {text}
+      </span>
+    );
+  }
 
   return (
     <motion.span

@@ -48,8 +48,8 @@ export default function Hero() {
               >
                 <EncryptedText
                   text="ROHIT"
-                  revealDelayMs={60}
-                  flipDelayMs={40}
+                  revealDelayMs={120}
+                  flipDelayMs={70}
                   encryptedClassName="text-accent/40"
                 />
               </motion.span>
@@ -59,8 +59,8 @@ export default function Hero() {
               >
                 <EncryptedText
                   text="BUILDS"
-                  revealDelayMs={60}
-                  flipDelayMs={40}
+                  revealDelayMs={120}
+                  flipDelayMs={70}
                   encryptedClassName="text-accent/40"
                 /><span className="text-accent">.</span>
               </motion.span>
