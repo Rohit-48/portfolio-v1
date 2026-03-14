@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { EncryptedText } from "@/components/ui/encrypted-text";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -82,14 +83,36 @@ export default function Hero() {
             </motion.div>
 
             {/* Description */}
-            <motion.p
+            <motion.div
               {...slideUp(0.46)}
-              className="font-sans text-[14px] md:text-[15px] text-secondary leading-relaxed max-w-md mb-8"
+              className="max-w-md mb-8"
             >
-              Full-stack developer focused on web engineering, modern JavaScript
-              frameworks, and backend systems. Building clean, scalable products
-              with great DX.
-            </motion.p>
+              <TypewriterEffect
+                words={[
+                  { text: "Full-stack" },
+                  { text: "developer" },
+                  { text: "focused" },
+                  { text: "on" },
+                  { text: "web" },
+                  { text: "engineering," },
+                  { text: "modern" },
+                  { text: "JavaScript" },
+                  { text: "frameworks," },
+                  { text: "and" },
+                  { text: "backend" },
+                  { text: "systems." },
+                  { text: "Building" },
+                  { text: "clean," },
+                  { text: "scalable" },
+                  { text: "products" },
+                  { text: "with" },
+                  { text: "great" },
+                  { text: "DX.", className: "text-accent" },
+                ]}
+                className="font-sans text-[14px] md:text-[15px] text-secondary leading-relaxed text-left font-normal"
+                cursorClassName="h-3 md:h-4 bg-accent"
+              />
+            </motion.div>
 
             {/* CTAs */}
             <motion.div {...slideUp(0.56)} className="flex items-center gap-4">
