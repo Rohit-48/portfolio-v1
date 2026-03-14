@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { EncryptedText } from "@/components/ui/encrypted-text";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -47,23 +45,13 @@ export default function Hero() {
                 {...slideLeft(0.18)}
                 className="block font-mono text-[48px] md:text-[60px] lg:text-[72px] font-bold text-primary leading-[0.9] tracking-tight"
               >
-                <EncryptedText
-                  text="ROHIT"
-                  revealDelayMs={120}
-                  flipDelayMs={70}
-                  encryptedClassName="text-accent/40"
-                />
+                ROHIT
               </motion.span>
               <motion.span
                 {...slideLeft(0.26)}
                 className="block font-mono text-[48px] md:text-[60px] lg:text-[72px] font-bold text-primary leading-[0.9] tracking-tight"
               >
-                <EncryptedText
-                  text="BUILDS"
-                  revealDelayMs={120}
-                  flipDelayMs={70}
-                  encryptedClassName="text-accent/40"
-                /><span className="text-accent">.</span>
+                BUILDS<span className="text-accent">.</span>
               </motion.span>
             </h1>
 
@@ -83,36 +71,14 @@ export default function Hero() {
             </motion.div>
 
             {/* Description */}
-            <motion.div
+            <motion.p
               {...slideUp(0.46)}
-              className="max-w-md mb-8"
+              className="font-sans text-[14px] md:text-[15px] text-secondary leading-relaxed max-w-md mb-8"
             >
-              <TypewriterEffect
-                words={[
-                  { text: "Full-stack" },
-                  { text: "developer" },
-                  { text: "focused" },
-                  { text: "on" },
-                  { text: "web" },
-                  { text: "engineering," },
-                  { text: "modern" },
-                  { text: "JavaScript" },
-                  { text: "frameworks," },
-                  { text: "and" },
-                  { text: "backend" },
-                  { text: "systems." },
-                  { text: "Building" },
-                  { text: "clean," },
-                  { text: "scalable" },
-                  { text: "products" },
-                  { text: "with" },
-                  { text: "great" },
-                  { text: "DX.", className: "text-accent" },
-                ]}
-                className="font-sans text-[14px] md:text-[15px] text-secondary leading-relaxed text-left font-normal"
-                cursorClassName="h-3 md:h-4 bg-accent"
-              />
-            </motion.div>
+              Full-stack developer focused on web engineering, modern JavaScript
+              frameworks, and backend systems. Building clean, scalable products
+              with great DX.
+            </motion.p>
 
             {/* CTAs */}
             <motion.div {...slideUp(0.56)} className="flex items-center gap-4">

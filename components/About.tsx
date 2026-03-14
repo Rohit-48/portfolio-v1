@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 const techStack = [
       "REACT",
@@ -96,35 +95,28 @@ export default function About() {
                                           ABOUT
                                     </motion.h2>
 
-                                    <motion.div variants={itemV}>
-                                          <TypewriterEffectSmooth
-                                                words={[
-                                                      { text: "Computer" },
-                                                      { text: "Science" },
-                                                      { text: "student" },
-                                                      { text: "and" },
-                                                      { text: "Software" },
-                                                      { text: "Developer." },
-                                                ]}
-                                                className="font-sans text-[14px] text-ghost leading-relaxed my-0"
-                                                cursorClassName="h-3.5 bg-accent"
-                                          />
-                                    </motion.div>
+                                    <motion.p
+                                          variants={itemV}
+                                          className="font-sans text-[14px] text-ghost leading-relaxed"
+                                    >
+                                          Computer Science student and Software
+                                          Developer. I build full-stack
+                                          applications with modern JavaScript
+                                          frameworks and backend systems,
+                                          aiming for clean architecture,
+                                          scalable design, and great developer
+                                          experience.
+                                    </motion.p>
                                     <motion.p
                                           variants={itemV}
                                           className="font-sans text-[14px] text-ghost leading-relaxed mt-4"
                                     >
-                                          I build full-stack applications with
-                                          modern JavaScript frameworks and
-                                          backend systems, aiming for clean
-                                          architecture, scalable design, and
-                                          great developer experience. I work
-                                          across the stack: React, Next.js and
-                                          Astro on the frontend, Rust, Node.js,
-                                          and Python on the backend. Currently
-                                          open to work and focused on web
-                                          engineering, designing, and systems
-                                          programming.
+                                          I work across the stack: React,
+                                          Next.js and Astro on the frontend,
+                                          Rust, Node.js, and Python on the
+                                          backend. Currently open to work and
+                                          focused on web engineering, designing,
+                                          and systems programming.
                                     </motion.p>
 
                                     <motion.div
