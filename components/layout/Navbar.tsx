@@ -63,7 +63,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "font-mono text-[12px] md:text-[13px] tracking-nav uppercase px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150",
+                "font-mono text-[12px] md:text-[13px] tracking-nav uppercase px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150 hover:-translate-y-0.5",
                 isActive(link.href)
                   ? "text-accent bg-accent-muted"
                   : "text-ghost hover:text-primary hover:bg-surface-hover"

@@ -61,7 +61,7 @@ export default function Nav() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleScrollClick(e, link.href)}
-                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
+                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover hover:-translate-y-0.5 px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
+                className="font-mono text-[12px] md:text-[13px] tracking-nav uppercase text-ghost hover:text-primary hover:bg-surface-hover hover:-translate-y-0.5 px-2.5 md:px-5 py-1.5 md:py-2 !rounded-full transition-all duration-150"
               >
                 {link.label}
               </Link>
