@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Mono, Instrument_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Providers from "@/components/Providers";
 import "./globals.css";
 
@@ -99,6 +100,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
