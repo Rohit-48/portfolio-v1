@@ -33,7 +33,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         variants={stagger}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="flex flex-col gap-2"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
       >
         {projects.map((project, i) => (
           <ProjectCard key={project.slug} project={project} index={i} />

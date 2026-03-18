@@ -14,7 +14,7 @@ export const projects: Project[] = [
     stack: ["Rust", "Cargo", "Astro", "MD", "Hono.js", "TypeScript", "Tailwind CSS", "SQLite"],
     content: `## What It Is
 
-My-Crate is a lightweight, self-hosted publishing system built for Obsidian users who want full control over their knowledge. It transforms markdown notes into a fast, customizable, and developer-friendly website, without subscription lock-in.
+iMy-Crate is a lightweight, self-hosted publishing system built for Obsidian users who want full control over their knowledge. It transforms markdown notes into a fast, customizable, and developer-friendly website, without subscription lock-in.
 
 ## Features
 
