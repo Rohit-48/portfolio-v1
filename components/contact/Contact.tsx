@@ -4,10 +4,10 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Mail, NotebookPen } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa6";
 import {
   SiGithub,
   SiX,
-  SiLinkedin,
   SiDiscord,
   SiCaldotcom,
   SiBuymeacoffee,
@@ -33,7 +33,7 @@ interface SocialLink {
 /* ━━━ P1 — Primary socials (large cards) ━━━ */
 const primarySocials: SocialLink[] = [
   { label: "GITHUB", href: "https://github.com/Rohit-48", tag: "Open source", icon: SiGithub, brand: "#8B949E" },
-  { label: "LINKEDIN", href: "https://linkedin.com/in/rohit48", tag: "Career", icon: SiLinkedin, brand: "#0A66C2" },
+  { label: "LINKEDIN", href: "https://linkedin.com/in/rohit48", tag: "Career", icon: FaLinkedinIn, brand: "#0A66C2" },
   { label: "X", href: "https://x.com/rohitcpp", tag: "Short thoughts", icon: SiX, brand: "#000000" },
   { label: "NOTES", href: "https://notes.rohitxyz.me", tag: "My notes", icon: NotebookPen, brand: "#10B981" },
   { label: "BOOK A CALL", href: "https://cal.com/rohitvince0", tag: "Schedule", icon: SiCaldotcom, brand: "#FF6B4A" },
