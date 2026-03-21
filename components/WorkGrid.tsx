@@ -1,89 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView, type Variants } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { getFeaturedProjects } from "@/lib/projects";
-import { useProjectPreview } from "@/components/projects/ProjectPreviewContext";
-import type { ProjectMeta } from "@/types/project";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 const projects = getFeaturedProjects().slice(0, 3);
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-const statusColor: Record<string, string> = {
-  live: "text-status-live",
-  wip: "text-status-wip",
-  archived: "text-status-archived",
-};
-
-function WorkGridCard({
-  project,
-  index,
-  variants,
-}: {
-  project: ProjectMeta;
-  index: number;
-  variants: Variants;
-}) {
-  const { setPreview } = useProjectPreview() ?? {};
-  const num = String(index + 1).padStart(3, "0");
-  const statusLabel = project.status.toUpperCase();
-
-  return (
-    <motion.div variants={variants}>
-      <Link
-        href={`/projects/${project.slug}`}
-        className="group relative flex items-center justify-between gap-4 px-4 py-3.5 border border-border bg-transparent transition-[border-color,background-color,transform] duration-200 ease-out hover:border-accent/40 hover:bg-surface-hover hover:-translate-y-0.5"
-        onMouseEnter={(e) => setPreview?.(project, e.clientX, e.clientY)}
-        onMouseMove={(e) => setPreview?.(project, e.clientX, e.clientY)}
-        onMouseLeave={() => setPreview?.(null, 0, 0)}
-      >
-        <span className="absolute bottom-0 left-0 h-[2px] bg-accent w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
-
-        {/* Left: number + title + tags */}
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-[10px] text-accent tracking-label font-medium shrink-0">
-            {num}
-          </span>
-          <h3 className="font-mono text-[14px] md:text-[16px] font-semibold text-primary leading-tight tracking-tighter truncate group-hover:text-accent transition-colors duration-150 ease-out">
-            {project.title}
-          </h3>
-          <div className="hidden md:flex items-center gap-1 shrink-0">
-            {project.tags.slice(0, 3).map((t) => (
-              <span
-                key={t}
-                className="font-mono text-[8px] tracking-tag uppercase px-1.5 py-0.5 border border-tag-border text-tag-text group-hover:border-accent/40 transition-colors duration-150 ease-out"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: status + arrow */}
-        <div className="flex items-center gap-3 shrink-0">
-          <span className={`font-mono text-[9px] tracking-[0.1em] ${statusColor[project.status] ?? "text-dim"}`}>
-            {statusLabel}
-          </span>
-          <span className="font-mono text-accent text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-200 ease-out">
-            &rarr;
-          </span>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
-
 const headerVariant = (delay: number) => ({
   hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, delay, ease } },
 });
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease } },
-};
 
 const stagger = {
   hidden: {},
@@ -135,10 +65,10 @@ export default function WorkGrid() {
           variants={stagger}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex flex-col gap-2"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
         >
           {projects.map((p, i) => (
-            <WorkGridCard key={p.slug} project={p} index={i} variants={cardVariant} />
+            <ProjectCard key={p.slug} project={p} index={i} />
           ))}
         </motion.div>
 
@@ -147,7 +77,7 @@ export default function WorkGrid() {
           variants={headerVariant(0.4)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-5"
+          className="mt-6"
         >
           <Link
             href="/projects"
